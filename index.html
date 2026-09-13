@@ -3,164 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ACT Math Practice Test 1</title>
+<title>Targeted ACT Math Practice — 25 Questions</title>
 <style>
-  :root {
-    --bg:#f4f6f8; --card:#ffffff; --ink:#1b1f23; --muted:#69707a;
-    --accent:#1f5f99; --accent2:#e8f0f7; --good:#1e7d45; --bad:#b43b3b;
-    --border:#d9dee5;
-  }
-  * { box-sizing:border-box; }
-  body { margin:0; font-family:Arial,Helvetica,sans-serif; background:var(--bg); color:var(--ink); }
-  .wrap { max-width:900px; margin:0 auto; padding:24px; }
-  .top { position:sticky; top:0; z-index:10; background:rgba(244,246,248,.96); backdrop-filter:blur(6px); padding:12px 0 10px; }
-  .bar { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:14px 16px; display:flex; gap:14px; align-items:center; justify-content:space-between; box-shadow:0 3px 14px rgba(0,0,0,.05); }
-  .title { font-weight:800; font-size:20px; }
-  .sub { color:var(--muted); font-size:13px; margin-top:2px; }
-  .timer { font-variant-numeric:tabular-nums; font-weight:800; font-size:20px; padding:8px 12px; border-radius:10px; background:#111; color:white; min-width:92px; text-align:center; }
-  .progress { height:8px; background:#e5e9ee; border-radius:999px; overflow:hidden; margin:12px 0 0; }
-  .progress > div { height:100%; width:0; background:var(--accent); transition:.2s; }
-  .question { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:20px; margin:18px 0; box-shadow:0 3px 12px rgba(0,0,0,.04); }
-  .qhead { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }
-  .num { font-size:13px; font-weight:800; color:var(--accent); }
-  .cat { font-size:12px; color:var(--muted); background:#f1f3f5; border-radius:999px; padding:5px 9px; white-space:nowrap; }
-  .prompt { margin:8px 0 14px; font-size:18px; line-height:1.45; }
-  .choice { display:block; margin:9px 0; padding:12px 14px; border:1px solid var(--border); border-radius:12px; cursor:pointer; transition:.15s; }
-  .choice:hover { border-color:#9eb8cf; background:#f8fbfd; }
-  .choice input { margin-right:10px; }
-  .actions { display:flex; gap:10px; flex-wrap:wrap; margin:24px 0 8px; }
-  button { border:0; border-radius:11px; padding:12px 18px; font-weight:800; cursor:pointer; font-size:15px; }
-  .primary { background:var(--accent); color:white; }
-  .secondary { background:#e8ebef; color:#222; }
-  .result { display:none; background:var(--card); border:2px solid var(--accent); border-radius:16px; padding:20px; margin:24px 0; }
-  .score { font-size:34px; font-weight:900; margin:4px 0 8px; }
-  table { width:100%; border-collapse:collapse; margin-top:12px; }
-  th,td { padding:9px 10px; border-bottom:1px solid var(--border); text-align:left; }
-  .review { margin-top:18px; }
-  .review-item { border-top:1px solid var(--border); padding:14px 0; }
-  .good { color:var(--good); font-weight:800; }
-  .bad { color:var(--bad); font-weight:800; }
-  .tiny { color:var(--muted); font-size:13px; }
-  @media (max-width:650px) {
-    .wrap { padding:14px; }
-    .title { font-size:17px; }
-    .timer { font-size:17px; }
-    .prompt { font-size:16px; }
-    .qhead { flex-direction:column; }
-  }
+:root{--bg:#111418;--card:#1a1e23;--text:#f1f3f5;--muted:#aeb5bd;--line:#343a40;--accent:#4dabf7;--good:#69db7c;--bad:#ff8787}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.45}
+main{max-width:820px;margin:auto;padding:24px 16px 60px}.hero{padding:24px;border:1px solid var(--line);border-radius:18px;background:var(--card);margin-bottom:20px}
+h1{margin:0 0 8px;font-size:clamp(1.6rem,5vw,2.3rem)} .muted{color:var(--muted)}
+.progress{height:9px;background:#30363d;border-radius:20px;overflow:hidden;margin:18px 0 8px}.bar{height:100%;width:0;background:var(--accent);transition:.2s}
+.question{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin:16px 0}.question h2{font-size:1.08rem;margin:0 0 14px}
+.choice{display:block;width:100%;text-align:left;margin:9px 0;padding:13px 14px;border:1px solid #495057;border-radius:10px;background:#20252b;color:var(--text);font-size:1rem;cursor:pointer}
+.choice:hover{border-color:var(--accent)}.choice.selected{border:2px solid var(--accent);padding:12px 13px}
+button.action{border:0;border-radius:10px;padding:13px 18px;font-size:1rem;font-weight:700;cursor:pointer;background:var(--accent);color:#071018;margin:10px 8px 0 0}
+button.secondary{background:#343a40;color:var(--text)} #result{display:none;background:var(--card);border:2px solid var(--accent);border-radius:18px;padding:24px;margin-top:24px}
+.review{border-top:1px solid var(--line);padding:16px 0}.correct{color:var(--good);font-weight:700}.incorrect{color:var(--bad);font-weight:700}
+table{width:100%;border-collapse:collapse;margin:12px 0}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="top">
-    <div class="bar">
-      <div>
-        <div class="title">ACT Math Practice Test 1</div>
-        <div class="sub">10-question targeted diagnostic • Algebra • Geometry • Essential Skills • Modeling</div>
-      </div>
-      <div class="timer" id="timer">11:07</div>
-    </div>
-    <div class="progress"><div id="progressFill"></div></div>
-  </div>
-
-  <p class="tiny">Recommended timing: 11 minutes, based on current ACT Math pacing. Answer every question before submitting.</p>
-  <div id="quiz"></div>
-
-  <div class="actions">
-    <button class="primary" onclick="submitQuiz()">Submit Test</button>
-    <button class="secondary" onclick="clearQuiz()">Clear Answers</button>
-  </div>
-
-  <div class="result" id="result"></div>
-</div>
-
+<main>
+<section class="hero">
+<h1>Targeted ACT Math Practice</h1>
+<p class="muted">25 questions • Focus: geometry, slope, algebra, perimeter, area, Pythagorean theorem, rates, percentages, averages, and functions.</p>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div class="muted" id="progressText">0 of 25 answered</div>
+</section>
+<form id="quiz"></form>
+<button class="action" id="submit" type="button">Score My Quiz</button>
+<button class="action secondary" id="reset" type="button">Start Over</button>
+<section id="result"></section>
+</main>
 <script>
-const questions = [{"q": "A streaming service charges a one-time activation fee of $18 plus $12 per month. Which expression gives the total cost, in dollars, after m months?", "choices": ["12m + 18", "18m + 12", "30m", "12(m + 18)"], "answer": 0, "category": "Modeling", "explanation": "The monthly cost is 12m, and the one-time activation fee adds $18, so the total is 12m + 18."}, {"q": "Solve for x: 3(2x \u2212 5) = 4x + 9.", "choices": ["6", "9", "12", "15"], "answer": 2, "category": "Algebra", "explanation": "Expand: 6x \u2212 15 = 4x + 9. Then 2x = 24, so x = 12."}, {"q": "A rectangle has a perimeter of 54 inches. Its length is 3 inches greater than twice its width. What is the width?", "choices": ["6 inches", "8 inches", "9 inches", "12 inches"], "answer": 1, "category": "Geometry", "explanation": "Let width = w and length = 2w + 3. Then 2w + 2(2w + 3) = 54, so 6w = 48 and w = 8."}, {"q": "A jacket originally costs $80. It is discounted by 25%, and then 4% sales tax is applied to the discounted price. What is the final price?", "choices": ["$60.00", "$62.40", "$63.20", "$64.00"], "answer": 1, "category": "Essential Skills", "explanation": "After the 25% discount: $80 \u00d7 0.75 = $60. Then tax: $60 \u00d7 1.04 = $62.40."}, {"q": "In a right triangle, the legs have lengths 9 and 12. What is the length of the hypotenuse?", "choices": ["13", "15", "18", "21"], "answer": 1, "category": "Geometry", "explanation": "Use the Pythagorean theorem: \u221a(9\u00b2 + 12\u00b2) = \u221a225 = 15."}, {"q": "The average of 6, 8, 11, x, and 15 is 10. What is x?", "choices": ["8", "9", "10", "12"], "answer": 2, "category": "Essential Skills", "explanation": "Five numbers averaging 10 must total 50. The known values total 40, so x = 10."}, {"q": "A line passes through the points (2, 5) and (6, 13). What is the slope of the line?", "choices": ["1/2", "2", "4", "8"], "answer": 1, "category": "Algebra", "explanation": "Slope = (13 \u2212 5) \u00f7 (6 \u2212 2) = 8 \u00f7 4 = 2."}, {"q": "A circular garden has a radius of 6 feet. What is its area, in square feet?", "choices": ["12\u03c0", "24\u03c0", "36\u03c0", "72\u03c0"], "answer": 2, "category": "Geometry", "explanation": "Area = \u03c0r\u00b2 = \u03c0(6\u00b2) = 36\u03c0."}, {"q": "A car travels 180 miles using 6 gallons of gasoline. At the same rate, how many gallons are needed to travel 330 miles?", "choices": ["9 gallons", "10 gallons", "11 gallons", "12 gallons"], "answer": 2, "category": "Modeling", "explanation": "The rate is 180 \u00f7 6 = 30 miles per gallon. Then 330 \u00f7 30 = 11 gallons."}, {"q": "For f(x) = x\u00b2 \u2212 4x + 7, what is f(3)?", "choices": ["2", "4", "7", "10"], "answer": 1, "category": "Algebra", "explanation": "Substitute 3: 3\u00b2 \u2212 4(3) + 7 = 9 \u2212 12 + 7 = 4."}];
-const quiz = document.getElementById('quiz');
+const Q=[
+["A rectangle has a perimeter of 70 inches. Its length is 5 inches greater than twice its width. What is the width?",["8 inches","10 inches","12 inches","15 inches"],1,"Let width = w and length = 2w + 5. Then 2w + 2(2w + 5) = 70, so 6w = 60 and w = 10.","Geometry"],
+["A right triangle has legs of 8 cm and 15 cm. What is the length of its hypotenuse?",["16 cm","17 cm","19 cm","23 cm"],1,"8² + 15² = 64 + 225 = 289. √289 = 17.","Geometry"],
+["A line passes through (3, 4) and (7, 16). What is its slope?",["2","3","4","12"],1,"Slope = (16 − 4) ÷ (7 − 3) = 12 ÷ 4 = 3.","Algebra"],
+["A circular patio has a radius of 9 feet. What is its area?",["18π ft²","36π ft²","81π ft²","162π ft²"],2,"Area = πr² = π(9²) = 81π ft².","Geometry"],
+["Solve for x: 4(2x − 3) = 5x + 15.",["7","8","9","11"],2,"8x − 12 = 5x + 15, so 3x = 27 and x = 9.","Algebra"],
+["A right triangle has a hypotenuse of 13 feet and one leg of 5 feet. What is the other leg?",["8 feet","10 feet","12 feet","18 feet"],2,"5² + b² = 13². b² = 144, so b = 12.","Geometry"],
+["The points (−2, 5) and (4, −7) lie on a line. What is the slope?",["−2","−1/2","2","6"],0,"Slope = (−7 − 5) ÷ (4 − (−2)) = −12 ÷ 6 = −2.","Algebra"],
+["A rectangular garden is 14 feet long and 9 feet wide. How many feet of fencing are needed to go around it?",["23 feet","46 feet","126 feet","252 feet"],1,"Perimeter = 2(14) + 2(9) = 46 feet.","Geometry"],
+["Five test scores average 84. Four scores are 78, 82, 86, and 89. What is the fifth score?",["80","84","85","89"],2,"The required total is 5 × 84 = 420. The known scores total 335, leaving 85.","Essential Skills"],
+["A $120 pair of shoes is discounted 30%. What is the sale price before tax?",["$36","$84","$90","$96"],1,"A 30% discount leaves 70%: 0.70 × $120 = $84.","Modeling"],
+["A rectangle has an area of 96 square feet and a length of 12 feet. What is its perimeter?",["20 feet","32 feet","40 feet","48 feet"],2,"Width = 96 ÷ 12 = 8. Perimeter = 2(12 + 8) = 40 feet.","Geometry"],
+["For f(x) = 2x² − 3x + 1, what is f(4)?",["17","20","21","29"],2,"2(4²) − 3(4) + 1 = 32 − 12 + 1 = 21.","Algebra"],
+["A ladder is placed 9 feet from a wall and reaches 12 feet up the wall. How long is the ladder?",["15 feet","18 feet","21 feet","225 feet"],0,"√(9² + 12²) = √225 = 15 feet.","Geometry"],
+["A line passes through (1, 9) and (5, 9). What is its slope?",["−4","0","1","4"],1,"Slope = (9 − 9) ÷ (5 − 1) = 0.","Algebra"],
+["A phone plan charges a $25 activation fee plus $40 per month. Which expression gives total cost after m months?",["25m + 40","40m + 25","65m","40m − 25"],1,"The repeating cost is 40m and the one-time fee is 25, giving 40m + 25.","Modeling"],
+["A square has an area of 144 square inches. What is its perimeter?",["12 inches","36 inches","48 inches","576 inches"],2,"Each side is √144 = 12 inches. Perimeter = 4 × 12 = 48 inches.","Geometry"],
+["Solve for x: 5(x + 4) − 3 = 2x + 26.",["2","3","4","5"],1,"5x + 17 = 2x + 26, so 3x = 9 and x = 3.","Algebra"],
+["A car travels 252 miles on 7 gallons. At the same rate, how many gallons are needed for 396 miles?",["9 gallons","10 gallons","11 gallons","12 gallons"],2,"252 ÷ 7 = 36 mpg. 396 ÷ 36 = 11 gallons.","Modeling"],
+["A rectangular room has a perimeter of 50 feet. Its length is 3 feet longer than its width. What is the width?",["9 feet","10 feet","11 feet","14 feet"],2,"2w + 2(w + 3) = 50. Thus 4w + 6 = 50, so w = 11.","Geometry"],
+["A right triangle has a hypotenuse of 25 inches and one leg of 7 inches. What is the other leg?",["18 inches","20 inches","24 inches","32 inches"],2,"7² + b² = 25². b² = 576, so b = 24.","Geometry"],
+["A line passes through (−3, −2) and (5, 10). What is its slope?",["2/3","3/2","8","12"],1,"Slope = (10 − (−2)) ÷ (5 − (−3)) = 12 ÷ 8 = 3/2.","Algebra"],
+["A rectangle is 4 feet longer than it is wide. Its area is 96 square feet. What is its width?",["6 feet","8 feet","10 feet","12 feet"],1,"Let width = w. Then w(w + 4) = 96. Since 8 × 12 = 96, the width is 8.","Geometry"],
+["A 20-foot ladder reaches 16 feet up a wall. How far is the bottom of the ladder from the wall?",["8 feet","10 feet","12 feet","14 feet"],2,"x² + 16² = 20². x² = 144, so x = 12 feet.","Geometry"],
+["A jacket costs $80, is discounted 25%, then 4% sales tax is applied to the discounted price. What is the final price?",["$60.00","$62.40","$64.00","$65.60"],1,"$80 × 0.75 = $60, then $60 × 1.04 = $62.40.","Modeling"],
+["The average of 7, 9, 12, x, and 17 is 11. What is x?",["8","10","11","12"],1,"Five values averaging 11 total 55. The known values total 45, so x = 10.","Essential Skills"]
+];
 
-questions.forEach((item, i) => {
-  const q = document.createElement('div');
-  q.className = 'question';
-  q.innerHTML = `
-    <div class="qhead">
-      <div class="num">QUESTION ${i+1}</div>
-      <div class="cat">${item.category}</div>
-    </div>
-    <div class="prompt">${item.q}</div>
-    ${item.choices.map((c,j)=>`
-      <label class="choice">
-        <input type="radio" name="q${i}" value="${j}" onchange="updateProgress()">
-        ${String.fromCharCode(65+j)}. ${c}
-      </label>`).join('')}
-  `;
-  quiz.appendChild(q);
+const form=document.getElementById("quiz"), answers={};
+Q.forEach((q,i)=>{
+ const s=document.createElement("section"); s.className="question";
+ s.innerHTML=`<h2>${i+1}. ${q[0]}</h2>`;
+ q[1].forEach((o,j)=>{
+  const b=document.createElement("button"); b.type="button"; b.className="choice"; b.textContent=String.fromCharCode(65+j)+". "+o;
+  b.addEventListener("click",()=>{answers[i]=j;s.querySelectorAll(".choice").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");update();});
+  s.appendChild(b);
+ }); form.appendChild(s);
 });
-
-function updateProgress() {
-  let answered = 0;
-  questions.forEach((_,i)=> {
-    if(document.querySelector(`input[name="q${i}"]:checked`)) answered++;
-  });
-  document.getElementById('progressFill').style.width = `${answered/questions.length*100}%`;
-}
-
-function submitQuiz() {
-  const selected = questions.map((_,i)=>document.querySelector(`input[name="q${i}"]:checked`));
-  const unanswered = selected.filter(x=>!x).length;
-  if(unanswered) {
-    if(!confirm(`You still have ${unanswered} unanswered question(s). Submit anyway?`)) return;
-  }
-  let score=0;
-  const cats={};
-  let review='';
-  questions.forEach((item,i)=> {
-    const ans = selected[i] ? Number(selected[i].value) : -1;
-    const ok = ans === item.answer;
-    if(ok) score++;
-    if(!cats[item.category]) cats[item.category]={correct:0,total:0};
-    cats[item.category].total++;
-    if(ok) cats[item.category].correct++;
-    review += `
-      <div class="review-item">
-        <div><strong>${i+1}. ${item.q}</strong></div>
-        <div class="${ok?'good':'bad'}">${ok?'Correct':'Incorrect'}${ans<0?' • No answer':''}</div>
-        <div class="tiny">Correct answer: ${String.fromCharCode(65+item.answer)}. ${item.choices[item.answer]}</div>
-        <div>${item.explanation}</div>
-      </div>`;
-  });
-  let rows = Object.entries(cats).map(([k,v])=>`<tr><td>${k}</td><td>${v.correct} / ${v.total}</td><td>${Math.round(v.correct/v.total*100)}%</td></tr>`).join('');
-  const pct=Math.round(score/questions.length*100);
-  const result=document.getElementById('result');
-  result.innerHTML=`
-    <div class="tiny">RESULT</div>
-    <div class="score">${score} / ${questions.length} <span class="tiny">(${pct}%)</span></div>
-    <div>${pct>=80?'Strong start.':pct>=60?'Useful baseline.':'This did its job: it found the holes.'}</div>
-    <table><thead><tr><th>Skill</th><th>Score</th><th>Accuracy</th></tr></thead><tbody>${rows}</tbody></table>
-    <div class="review"><h3>Answer Review</h3>${review}</div>`;
-  result.style.display='block';
-  result.scrollIntoView({behavior:'smooth'});
-}
-
-function clearQuiz() {
-  document.querySelectorAll('input[type=radio]').forEach(x=>x.checked=false);
-  updateProgress();
-  document.getElementById('result').style.display='none';
-}
-
-let remaining = 11*60+7;
-const timerEl=document.getElementById('timer');
-const interval=setInterval(()=>{
-  if(remaining<=0) {
-    clearInterval(interval);
-    timerEl.textContent='TIME';
-    timerEl.style.background='#8f2f2f';
-    return;
-  }
-  remaining--;
-  const m=Math.floor(remaining/60);
-  const s=remaining%60;
-  timerEl.textContent=`${m}:${String(s).padStart(2,'0')}`;
-},1000);
+function update(){const n=Object.keys(answers).length;document.getElementById("bar").style.width=(n/Q.length*100)+"%";document.getElementById("progressText").textContent=`${n} of ${Q.length} answered`;}
+document.getElementById("submit").addEventListener("click",()=>{
+ if(Object.keys(answers).length<Q.length){alert(`Please answer all 25 questions. You have ${Q.length-Object.keys(answers).length} left.`);return;}
+ let score=0, skills={};
+ Q.forEach((q,i)=>{let ok=answers[i]===q[2];if(ok)score++;if(!skills[q[4]])skills[q[4]]=[0,0];skills[q[4]][1]++;if(ok)skills[q[4]][0]++;});
+ const pct=Math.round(score/Q.length*100); let r=document.getElementById("result");r.style.display="block";
+ let msg=pct>=90?"Excellent. Move to harder ACT-style problems.":pct>=80?"Strong progress. Review the misses, then increase difficulty.":pct>=70?"Useful baseline. Review the weak skills before the next set.":"Focus on the weak skill areas before adding speed.";
+ let html=`<h2>RESULT</h2><h1>${score} / ${Q.length} <span class="muted">(${pct}%)</span></h1><p>${msg}</p><table><tr><th>Skill</th><th>Score</th><th>Accuracy</th></tr>`;
+ Object.entries(skills).forEach(([k,v])=>html+=`<tr><td>${k}</td><td>${v[0]} / ${v[1]}</td><td>${Math.round(v[0]/v[1]*100)}%</td></tr>`);
+ html+=`</table><h2>Answer Review</h2>`;
+ Q.forEach((q,i)=>{let ok=answers[i]===q[2];html+=`<div class="review"><strong>${i+1}. ${q[0]}</strong><br><span class="${ok?"correct":"incorrect"}">${ok?"Correct":"Incorrect"}</span><br><span class="muted">Correct answer: ${String.fromCharCode(65+q[2])}. ${q[1][q[2]]}</span><br>${q[3]}</div>`;});
+ r.innerHTML=html;r.scrollIntoView({behavior:"smooth"});
+});
+document.getElementById("reset").addEventListener("click",()=>location.reload());
 </script>
 </body>
 </html>
