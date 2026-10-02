@@ -1,204 +1,465 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ACT Math Practice Quiz 2</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ACT Math Practice Quiz — 50 Questions</title>
 <style>
   :root{
-    --bg:#0f172a; --card:#172033; --card2:#111827; --text:#f8fafc;
-    --muted:#cbd5e1; --accent:#60a5fa; --border:#334155;
-    --good:#22c55e; --bad:#ef4444; --warn:#f59e0b;
+    --bg:#f5f7fb;
+    --card:#ffffff;
+    --text:#1f2937;
+    --muted:#6b7280;
+    --accent:#4f46e5;
+    --good:#15803d;
+    --bad:#b91c1c;
+    --border:#dbe2ea;
   }
   *{box-sizing:border-box}
-  body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
-  .wrap{max-width:920px;margin:auto;padding:24px}
-  h1{margin-bottom:6px}
-  .subtitle{color:var(--muted);margin-top:0}
-  .topbar{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;margin:20px 0}
-  .progress-shell{height:12px;background:#253149;border-radius:999px;overflow:hidden}
-  .progress{height:100%;width:0;background:var(--accent);transition:.2s}
-  .timer{font-weight:700;background:var(--card2);border:1px solid var(--border);padding:8px 12px;border-radius:10px}
-  .question{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin:16px 0}
-  .question h3{margin-top:0;font-size:18px}
-  .choice{display:block;width:100%;text-align:left;margin:9px 0;padding:12px 14px;border-radius:10px;
-    border:1px solid #475569;background:#111827;color:var(--text);cursor:pointer;font-size:15px}
-  .choice:hover{border-color:var(--accent)}
-  .choice.selected{outline:2px solid var(--accent);background:#172554}
-  .choice.correct{outline:2px solid var(--good);background:#052e16}
-  .choice.incorrect{outline:2px solid var(--bad);background:#450a0a}
-  .explanation{display:none;margin-top:12px;padding:12px;border-left:4px solid var(--accent);background:#0b1220;color:#e2e8f0}
-  .controls{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}
-  button.action{padding:12px 18px;border:0;border-radius:10px;font-weight:700;cursor:pointer}
-  #submitBtn{background:var(--accent);color:#07111f}
-  #clearBtn{background:#334155;color:white}
-  #results{display:none;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin:20px 0}
-  .breakdown{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:14px}
-  .stat{background:#111827;padding:12px;border-radius:10px;border:1px solid var(--border)}
-  .small{color:var(--muted);font-size:14px}
-  @media(max-width:600px){.wrap{padding:14px}.topbar{grid-template-columns:1fr}.timer{justify-self:start}}
+  body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.5;
+  }
+  header{
+    background:#111827;
+    color:#fff;
+    padding:28px 20px;
+    text-align:center;
+  }
+  header h1{margin:0 0 8px;font-size:clamp(1.7rem,4vw,2.5rem)}
+  header p{margin:0;color:#d1d5db}
+  .wrap{max-width:900px;margin:28px auto;padding:0 16px 60px}
+  .info{
+    background:#eef2ff;
+    border:1px solid #c7d2fe;
+    border-radius:12px;
+    padding:16px;
+    margin-bottom:20px;
+  }
+  .question{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:20px;
+    margin:16px 0;
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
+  }
+  .question h3{margin:0 0 14px;font-size:1.05rem}
+  .option{
+    display:block;
+    padding:10px 12px;
+    border-radius:10px;
+    margin:7px 0;
+    cursor:pointer;
+  }
+  .option:hover{background:#f3f4f6}
+  input[type="radio"]{margin-right:10px}
+  .controls{
+    position:sticky;
+    bottom:0;
+    background:rgba(245,247,251,.96);
+    border-top:1px solid var(--border);
+    padding:14px 0;
+    margin-top:24px;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  button{
+    border:0;
+    border-radius:10px;
+    padding:12px 18px;
+    font-weight:700;
+    cursor:pointer;
+    font-size:1rem;
+  }
+  #gradeBtn{background:var(--accent);color:white}
+  #resetBtn{background:#e5e7eb;color:#111827}
+  #result{
+    margin-top:18px;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:20px;
+    display:none;
+  }
+  .correct{border-left:5px solid var(--good)}
+  .incorrect{border-left:5px solid var(--bad)}
+  .explanation{
+    display:none;
+    margin-top:12px;
+    padding:10px 12px;
+    border-radius:8px;
+    background:#f9fafb;
+    color:#374151;
+    font-size:.95rem;
+  }
+  .show{display:block}
+  .score{font-size:1.4rem;font-weight:800;margin-bottom:6px}
+  .small{color:var(--muted);font-size:.92rem}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>ACT Math Practice Quiz 2</h1>
-  <p class="subtitle">25 original ACT-style questions • Algebra • Functions • Geometry • Statistics • Modeling</p>
+<header>
+  <h1>ACT Math Practice Quiz</h1>
+  <p>50 original multiple-choice questions • Self-grading • Explanations included</p>
+</header>
 
-  <div class="topbar">
-    <div>
-      <div class="small" id="progressText">0 of 25 answered</div>
-      <div class="progress-shell"><div class="progress" id="progress"></div></div>
-    </div>
-    <div class="timer" id="timer">27:00</div>
+<div class="wrap">
+  <div class="info">
+    <strong>Directions:</strong> Choose the best answer for each question. When finished, click
+    <strong>Grade Quiz</strong>. This is original ACT-style practice, not official ACT material.
   </div>
 
-  <div id="quiz"></div>
+  <form id="quizForm"></form>
 
   <div class="controls">
-    <button class="action" id="submitBtn">Submit Quiz</button>
-    <button class="action" id="clearBtn">Clear Answers</button>
+    <button type="button" id="gradeBtn">Grade Quiz</button>
+    <button type="button" id="resetBtn">Reset</button>
   </div>
 
-  <div id="results"></div>
+  <div id="result"></div>
 </div>
 
 <script>
 const questions = [
- {cat:"Algebra", q:"1. Solve for x: 5x − 7 = 3x + 19.", a:["6","10","13","26"], c:2,
-  e:"Subtract 3x from both sides: 2x − 7 = 19. Add 7: 2x = 26. Divide by 2, so x = 13."},
- {cat:"Modeling", q:"2. A taxi charges a $4 starting fee plus $2.50 per mile. Which expression gives the cost, in dollars, of a ride of m miles?", a:["4m + 2.50","2.50m + 4","6.50m","2.50(m + 4)"], c:1,
-  e:"The fixed fee is 4 and the mileage charge is 2.50 for each of m miles, so C = 2.50m + 4."},
- {cat:"Geometry", q:"3. The angles of a triangle measure (x + 10)°, (2x + 5)°, and (3x − 15)°. What is x?", a:["25","30","35","40"], c:1,
-  e:"Triangle angles total 180°. (x+10)+(2x+5)+(3x−15)=180 gives 6x=180, so x=30."},
- {cat:"Functions", q:"4. If g(x) = 2x² − 3x + 1, what is g(−2)?", a:["3","9","15","19"], c:2,
-  e:"g(−2)=2(4)−3(−2)+1=8+6+1=15."},
- {cat:"Statistics", q:"5. The median of 4, 7, 9, 12, 18, 21, and 30 is:", a:["9","12","14","18"], c:1,
-  e:"There are 7 ordered values, so the median is the 4th value: 12."},
- {cat:"Algebra", q:"6. Which value of x satisfies 4(x − 3) + 2 = 2x + 10?", a:["8","10","12","14"], c:1,
-  e:"Expand: 4x−12+2=2x+10, so 4x−10=2x+10. Then 2x=20 and x=10."},
- {cat:"Geometry", q:"7. A rectangular garden is 15 feet long and 8 feet wide. A path 1 foot wide is built inside the garden along all four edges. What is the area, in square feet, of the remaining inner rectangle?", a:["78","91","104","120"], c:0,
-  e:"The path removes 1 foot from each side, so inner dimensions are 13 by 6. Area = 13×6 = 78."},
- {cat:"Modeling", q:"8. A $240 tablet is marked down by 25%. What is the sale price before tax?", a:["$60","$180","$195","$215"], c:1,
-  e:"A 25% discount means paying 75% of the price. 0.75×240 = 180."},
- {cat:"Algebra", q:"9. If 3y/5 = 18, what is y?", a:["10","24","30","45"], c:2,
-  e:"Multiply both sides by 5: 3y=90. Divide by 3: y=30."},
- {cat:"Geometry", q:"10. A circle has diameter 14 centimeters. What is its circumference?", a:["7π cm","14π cm","28π cm","49π cm"], c:1,
-  e:"Circumference is πd. With diameter 14, C=14π centimeters."},
- {cat:"Functions", q:"11. For h(x) = 3x − 8, which value of x makes h(x) = 13?", a:["5","7","13","21"], c:1,
-  e:"Set 3x−8=13. Then 3x=21, so x=7."},
- {cat:"Statistics", q:"12. A bag contains 5 red, 3 blue, and 2 green marbles. One marble is selected at random. What is the probability it is blue?", a:["1/5","3/10","1/3","3/5"], c:1,
-  e:"There are 10 marbles total and 3 are blue, so the probability is 3/10."},
- {cat:"Algebra", q:"13. What is the solution to the system y = 2x + 1 and y = −x + 10?", a:["(2, 5)","(3, 7)","(4, 6)","(5, 5)"], c:1,
-  e:"Set the expressions equal: 2x+1=−x+10. Then 3x=9, x=3, and y=7."},
- {cat:"Geometry", q:"14. A right triangle has legs of length 7 and 24. What is the length of the hypotenuse?", a:["25","26","30","31"], c:0,
-  e:"By the Pythagorean theorem, c²=7²+24²=49+576=625, so c=25."},
- {cat:"Modeling", q:"15. A car travels 156 miles in 3 hours at a constant rate. At that rate, how far will it travel in 5 hours?", a:["208 miles","240 miles","260 miles","312 miles"], c:2,
-  e:"The rate is 156/3=52 miles per hour. In 5 hours it travels 52×5=260 miles."},
- {cat:"Algebra", q:"16. Simplify: (3x²)(4x³).", a:["7x⁵","12x⁵","12x⁶","12x⁹"], c:1,
-  e:"Multiply coefficients: 3×4=12. Add exponents of x: x²×x³=x⁵. Result: 12x⁵."},
- {cat:"Functions", q:"17. The line y = −3x + 11 has which slope?", a:["−11","−3","3","11"], c:1,
-  e:"In slope-intercept form y=mx+b, the coefficient m is the slope. Here m=−3."},
- {cat:"Geometry", q:"18. A cylinder has radius 3 inches and height 5 inches. What is its volume?", a:["15π in³","30π in³","45π in³","90π in³"], c:2,
-  e:"Cylinder volume is πr²h. Using r=3 and h=5 gives π(9)(5)=45π cubic inches."},
- {cat:"Statistics", q:"19. The scores 72, 78, 84, 86, and 90 have a mean of:", a:["80","82","84","86"], c:1,
-  e:"Their sum is 410. Divide by 5: 410/5=82."},
- {cat:"Algebra", q:"20. Which expression is equivalent to x² − 9?", a:["(x−9)(x+1)","(x−3)(x+3)","(x−3)²","(x−9)²"], c:1,
-  e:"This is a difference of squares: x²−3²=(x−3)(x+3)."},
- {cat:"Modeling", q:"21. A population of 800 increases by 15%. What is the new population?", a:["815","880","900","920"], c:3,
-  e:"15% of 800 is 120. Add the increase: 800+120=920."},
- {cat:"Geometry", q:"22. Two similar triangles have corresponding side lengths 6 and 9. If another side of the smaller triangle is 10, what is the corresponding side of the larger triangle?", a:["12","15","16","18"], c:1,
-  e:"The scale factor is 9/6=1.5. Multiply 10 by 1.5 to get 15."},
- {cat:"Algebra", q:"23. If |2x − 5| = 9, what are the possible values of x?", a:["−7 and 2","−2 and 7","2 and 7","−2 and 2"], c:1,
-  e:"Solve 2x−5=9 to get x=7, and 2x−5=−9 to get x=−2."},
- {cat:"Functions", q:"24. A function is defined by f(x) = x + 4. What is f(f(3))?", a:["7","10","11","14"], c:2,
-  e:"First f(3)=7. Then f(7)=11."},
- {cat:"Geometry", q:"25. In the coordinate plane, what is the midpoint of the segment joining (−4, 6) and (8, −2)?", a:["(2, 2)","(2, 4)","(4, 2)","(6, 4)"], c:0,
-  e:"Average the x-coordinates and y-coordinates: ((−4+8)/2, (6−2)/2)=(2,2)."}
+  {
+    q:"1. If 3x + 7 = 25, what is x?",
+    a:["4","5","6","8"], c:2,
+    e:"Subtract 7: 3x = 18. Divide by 3: x = 6."
+  },
+  {
+    q:"2. A jacket originally costs $80 and is discounted 25%. What is the sale price?",
+    a:["$55","$60","$65","$70"], c:1,
+    e:"25% of $80 is $20, so the sale price is $80 − $20 = $60."
+  },
+  {
+    q:"3. What is the slope of the line through (2, 5) and (6, 13)?",
+    a:["1","2","3","4"], c:1,
+    e:"Slope = (13 − 5)/(6 − 2) = 8/4 = 2."
+  },
+  {
+    q:"4. Simplify: 2(3x − 4) + 5.",
+    a:["6x − 3","6x − 8","5x + 1","6x + 1"], c:0,
+    e:"Distribute: 6x − 8 + 5 = 6x − 3."
+  },
+  {
+    q:"5. The ratio of boys to girls in a club is 3:5. If there are 40 students total, how many are boys?",
+    a:["12","15","18","24"], c:1,
+    e:"There are 8 ratio parts total. 40 ÷ 8 = 5 per part, and 3 × 5 = 15 boys."
+  },
+  {
+    q:"6. Solve: x² − 9 = 0.",
+    a:["x = 3 only","x = −3 only","x = ±3","x = 9"], c:2,
+    e:"x² = 9, so x = 3 or x = −3."
+  },
+  {
+    q:"7. A circle has radius 6. What is its area?",
+    a:["12π","18π","36π","72π"], c:2,
+    e:"Area = πr² = π(6²) = 36π."
+  },
+  {
+    q:"8. If f(x) = 2x² − 3, what is f(4)?",
+    a:["13","21","29","35"], c:2,
+    e:"f(4) = 2(16) − 3 = 32 − 3 = 29."
+  },
+  {
+    q:"9. What is 15% of 240?",
+    a:["24","30","36","40"], c:2,
+    e:"0.15 × 240 = 36."
+  },
+  {
+    q:"10. The average of 8, 11, 14, and x is 12. What is x?",
+    a:["12","13","15","17"], c:2,
+    e:"A mean of 12 for 4 values means a total of 48. The known values sum to 33, so x = 15."
+  },
+  {
+    q:"11. Which expression is equivalent to (x + 4)(x − 2)?",
+    a:["x² + 2x − 8","x² − 2x − 8","x² + 6x − 8","x² + 2x + 8"], c:0,
+    e:"FOIL gives x² − 2x + 4x − 8 = x² + 2x − 8."
+  },
+  {
+    q:"12. A right triangle has legs of length 9 and 12. What is the hypotenuse?",
+    a:["13","15","18","21"], c:1,
+    e:"By the Pythagorean theorem: √(9² + 12²) = √225 = 15."
+  },
+  {
+    q:"13. If 5y − 2 = 3y + 10, what is y?",
+    a:["4","5","6","8"], c:2,
+    e:"Subtract 3y: 2y − 2 = 10. Add 2: 2y = 12, so y = 6."
+  },
+  {
+    q:"14. A car travels 180 miles in 3 hours at a constant speed. How far will it travel in 5 hours?",
+    a:["250 miles","275 miles","300 miles","325 miles"], c:2,
+    e:"Speed = 180 ÷ 3 = 60 mph. In 5 hours: 60 × 5 = 300 miles."
+  },
+  {
+    q:"15. What is the value of |−7| + |3|?",
+    a:["4","10","−4","−10"], c:1,
+    e:"|−7| = 7 and |3| = 3, so the sum is 10."
+  },
+  {
+    q:"16. If 2/3 = x/18, what is x?",
+    a:["6","9","12","15"], c:2,
+    e:"Cross-multiply: 3x = 36, so x = 12."
+  },
+  {
+    q:"17. What is the y-intercept of y = −4x + 9?",
+    a:["−4","4","9","−9"], c:2,
+    e:"In y = mx + b, the y-intercept is b. Here b = 9."
+  },
+  {
+    q:"18. A rectangular garden is 12 ft by 7 ft. What is its perimeter?",
+    a:["38 ft","42 ft","84 ft","19 ft"], c:0,
+    e:"Perimeter = 2(12 + 7) = 38 ft."
+  },
+  {
+    q:"19. Simplify: 3x² · 4x³.",
+    a:["7x⁵","12x⁵","12x⁶","7x⁶"], c:1,
+    e:"Multiply coefficients: 3 × 4 = 12. Add exponents: x²·x³ = x⁵."
+  },
+  {
+    q:"20. If x > 0 and x² = 49, what is x?",
+    a:["−7","7","49","±7"], c:1,
+    e:"x² = 49 gives ±7, but x > 0, so x = 7."
+  },
+  {
+    q:"21. The probability of drawing a red marble from a bag is 3/8. If there are 24 marbles total, how many are red?",
+    a:["6","8","9","12"], c:2,
+    e:"(3/8) × 24 = 9."
+  },
+  {
+    q:"22. Solve the inequality: 4x − 5 < 11.",
+    a:["x < 4","x > 4","x < 6","x > 6"], c:0,
+    e:"Add 5: 4x < 16. Divide by 4: x < 4."
+  },
+  {
+    q:"23. What is the midpoint of the segment joining (−2, 6) and (4, 10)?",
+    a:["(1, 8)","(2, 8)","(1, 16)","(6, 4)"], c:0,
+    e:"Midpoint = ((−2 + 4)/2, (6 + 10)/2) = (1, 8)."
+  },
+  {
+    q:"24. A population of 500 increases by 8%. What is the new population?",
+    a:["508","540","580","625"], c:1,
+    e:"8% of 500 is 40, so the new population is 540."
+  },
+  {
+    q:"25. If 2x + 3y = 18 and x = 3, what is y?",
+    a:["2","3","4","6"], c:2,
+    e:"Substitute x = 3: 6 + 3y = 18, so 3y = 12 and y = 4."
+  },
+  {
+    q:"26. Which value is equal to 4⁻²?",
+    a:["−16","−1/16","1/8","1/16"], c:3,
+    e:"A negative exponent means reciprocal: 4⁻² = 1/4² = 1/16."
+  },
+  {
+    q:"27. A square has area 121 square inches. What is its perimeter?",
+    a:["22 in","33 in","44 in","121 in"], c:2,
+    e:"Side length = √121 = 11. Perimeter = 4 × 11 = 44 inches."
+  },
+  {
+    q:"28. If g(x) = 5 − 2x, for what x is g(x) = −9?",
+    a:["2","5","7","9"], c:2,
+    e:"5 − 2x = −9. Then −2x = −14, so x = 7."
+  },
+  {
+    q:"29. What is the median of 3, 7, 9, 12, 15, 18, 21?",
+    a:["9","12","13","15"], c:1,
+    e:"There are 7 ordered values, so the 4th value is the median: 12."
+  },
+  {
+    q:"30. A bag contains 5 blue, 4 green, and 3 yellow marbles. What is the probability of selecting a green marble?",
+    a:["1/4","1/3","4/9","4/5"], c:1,
+    e:"There are 12 marbles total and 4 green. Probability = 4/12 = 1/3."
+  },
+  {
+    q:"31. What is the solution to 2(x − 3) = 3x + 4?",
+    a:["−10","−4","4","10"], c:0,
+    e:"2x − 6 = 3x + 4. Subtract 2x: −6 = x + 4, so x = −10."
+  },
+  {
+    q:"32. If the angles of a triangle are 2x, 3x, and 4x degrees, what is x?",
+    a:["15","20","25","30"], c:1,
+    e:"Triangle angles total 180°. 2x + 3x + 4x = 9x = 180, so x = 20."
+  },
+  {
+    q:"33. Simplify: (6x³)/(2x), assuming x ≠ 0.",
+    a:["3x","3x²","4x²","3x³"], c:1,
+    e:"6/2 = 3 and x³/x = x², so the result is 3x²."
+  },
+  {
+    q:"34. A number is increased by 20% and becomes 72. What was the original number?",
+    a:["54","58","60","64"], c:2,
+    e:"If the original is n, then 1.20n = 72. Thus n = 60."
+  },
+  {
+    q:"35. What is the distance between 2 and −11 on the number line?",
+    a:["9","11","13","15"], c:2,
+    e:"Distance = |2 − (−11)| = |13| = 13."
+  },
+  {
+    q:"36. If sin θ = 3/5 for an acute angle θ, what is cos θ?",
+    a:["2/5","3/4","4/5","5/3"], c:2,
+    e:"A 3-4-5 right triangle has opposite/hypotenuse = 3/5, so adjacent/hypotenuse = 4/5."
+  },
+  {
+    q:"37. What is the vertex x-coordinate of y = x² − 8x + 5?",
+    a:["−4","2","4","8"], c:2,
+    e:"For y = ax² + bx + c, the vertex x-coordinate is −b/(2a) = 8/2 = 4."
+  },
+  {
+    q:"38. A cylinder has radius 3 and height 10. What is its volume?",
+    a:["30π","60π","90π","180π"], c:2,
+    e:"Volume = πr²h = π(9)(10) = 90π."
+  },
+  {
+    q:"39. If a sequence begins 5, 9, 13, 17, ... what is the 20th term?",
+    a:["77","81","85","89"], c:1,
+    e:"Arithmetic sequence with difference 4: a₂₀ = 5 + 19(4) = 81."
+  },
+  {
+    q:"40. Which equation represents a line perpendicular to y = 2x + 1?",
+    a:["y = 2x − 4","y = −2x + 3","y = (1/2)x + 5","y = −(1/2)x + 7"], c:3,
+    e:"A perpendicular line has slope equal to the negative reciprocal of 2, which is −1/2."
+  },
+  {
+    q:"41. If x + y = 11 and x − y = 3, what is x?",
+    a:["4","7","8","14"], c:1,
+    e:"Add the equations: 2x = 14, so x = 7."
+  },
+  {
+    q:"42. What is the remainder when 53 is divided by 6?",
+    a:["3","4","5","6"], c:2,
+    e:"6 × 8 = 48, and 53 − 48 = 5."
+  },
+  {
+    q:"43. A triangle has base 14 cm and height 9 cm. What is its area?",
+    a:["46 cm²","63 cm²","126 cm²","252 cm²"], c:1,
+    e:"Area = (1/2)bh = (1/2)(14)(9) = 63 cm²."
+  },
+  {
+    q:"44. If log₁₀(1000) = x, what is x?",
+    a:["2","3","10","100"], c:1,
+    e:"10³ = 1000, so log₁₀(1000) = 3."
+  },
+  {
+    q:"45. A machine makes 18 parts in 12 minutes. At the same rate, how many parts does it make in 50 minutes?",
+    a:["60","72","75","90"], c:2,
+    e:"Rate = 18/12 = 1.5 parts per minute. In 50 minutes: 1.5 × 50 = 75."
+  },
+  {
+    q:"46. Solve: √(x + 1) = 5.",
+    a:["24","25","26","49"], c:0,
+    e:"Square both sides: x + 1 = 25, so x = 24."
+  },
+  {
+    q:"47. If 3^(x+1) = 81, what is x?",
+    a:["2","3","4","5"], c:1,
+    e:"81 = 3⁴, so x + 1 = 4 and x = 3."
+  },
+  {
+    q:"48. A $1,200 investment earns 5% simple interest per year. How much interest is earned in 3 years?",
+    a:["$60","$120","$180","$240"], c:2,
+    e:"Simple interest = principal × rate × time = 1200 × 0.05 × 3 = $180."
+  },
+  {
+    q:"49. If tan θ = 1 for an acute angle θ, what is θ?",
+    a:["30°","45°","60°","90°"], c:1,
+    e:"For an acute angle, tan 45° = 1."
+  },
+  {
+    q:"50. The equation x² − 5x + 6 = 0 has which solutions?",
+    a:["1 and 6","2 and 3","−2 and −3","−1 and −6"], c:1,
+    e:"Factor: x² − 5x + 6 = (x − 2)(x − 3), so x = 2 or 3."
+  }
 ];
 
-const quiz = document.getElementById("quiz");
-const selected = Array(questions.length).fill(null);
+const form = document.getElementById("quizForm");
 
-questions.forEach((item,i)=>{
-  const box=document.createElement("section");
-  box.className="question";
-  box.innerHTML=`<h3>${item.q}</h3><div class="small">${item.cat}</div>`;
-  item.a.forEach((ans,j)=>{
-    const b=document.createElement("button");
-    b.className="choice";
-    b.type="button";
-    b.textContent=String.fromCharCode(65+j)+". "+ans;
-    b.onclick=()=>{
-      if(document.body.dataset.submitted==="1") return;
-      selected[i]=j;
-      [...box.querySelectorAll(".choice")].forEach(x=>x.classList.remove("selected"));
-      b.classList.add("selected");
-      updateProgress();
-    };
-    box.appendChild(b);
+questions.forEach((item, i) => {
+  const block = document.createElement("section");
+  block.className = "question";
+  block.id = "q" + i;
+
+  const title = document.createElement("h3");
+  title.textContent = item.q;
+  block.appendChild(title);
+
+  item.a.forEach((choice, j) => {
+    const label = document.createElement("label");
+    label.className = "option";
+
+    const input = document.createElement("input");
+    input.type = "radio";
+    input.name = "q" + i;
+    input.value = j;
+
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(choice));
+    block.appendChild(label);
   });
-  const exp=document.createElement("div");
-  exp.className="explanation";
-  exp.id=`exp${i}`;
-  box.appendChild(exp);
-  quiz.appendChild(box);
+
+  const exp = document.createElement("div");
+  exp.className = "explanation";
+  exp.id = "exp" + i;
+  block.appendChild(exp);
+
+  form.appendChild(block);
 });
 
-function updateProgress(){
-  const n=selected.filter(v=>v!==null).length;
-  document.getElementById("progressText").textContent=`${n} of ${questions.length} answered`;
-  document.getElementById("progress").style.width=`${(n/questions.length)*100}%`;
-}
+document.getElementById("gradeBtn").addEventListener("click", () => {
+  let score = 0;
+  let answered = 0;
 
-let seconds=27*60;
-const timerEl=document.getElementById("timer");
-const timer=setInterval(()=>{
-  if(document.body.dataset.submitted==="1") return;
-  seconds--;
-  const m=Math.floor(seconds/60), s=seconds%60;
-  timerEl.textContent=`${m}:${String(s).padStart(2,"0")}`;
-  if(seconds<=0){ clearInterval(timer); submitQuiz(); }
-},1000);
+  questions.forEach((item, i) => {
+    const block = document.getElementById("q" + i);
+    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+    const exp = document.getElementById("exp" + i);
 
-function submitQuiz(){
-  if(document.body.dataset.submitted==="1") return;
-  document.body.dataset.submitted="1";
-  clearInterval(timer);
-  let score=0;
-  const cats={};
-  document.querySelectorAll(".question").forEach((box,i)=>{
-    const item=questions[i];
-    if(!cats[item.cat]) cats[item.cat]={right:0,total:0};
-    cats[item.cat].total++;
-    const buttons=[...box.querySelectorAll(".choice")];
-    buttons[item.c].classList.add("correct");
-    if(selected[i]===item.c){ score++; cats[item.cat].right++; }
-    else if(selected[i]!==null){ buttons[selected[i]].classList.add("incorrect"); }
-    const exp=document.getElementById(`exp${i}`);
-    exp.style.display="block";
-    exp.innerHTML=`<strong>Explanation:</strong> ${item.e}`;
+    block.classList.remove("correct", "incorrect");
+    exp.classList.add("show");
+
+    if (selected) {
+      answered++;
+      const chosen = Number(selected.value);
+      if (chosen === item.c) {
+        score++;
+        block.classList.add("correct");
+        exp.textContent = "Correct. " + item.e;
+      } else {
+        block.classList.add("incorrect");
+        exp.textContent = `Not quite. Correct answer: ${item.a[item.c]}. ${item.e}`;
+      }
+    } else {
+      block.classList.add("incorrect");
+      exp.textContent = `Unanswered. Correct answer: ${item.a[item.c]}. ${item.e}`;
+    }
   });
-  const pct=Math.round(score/questions.length*100);
-  const breakdown=Object.entries(cats).map(([k,v])=>
-    `<div class="stat"><strong>${k}</strong><br>${v.right}/${v.total} correct (${Math.round(v.right/v.total*100)}%)</div>`
-  ).join("");
-  const r=document.getElementById("results");
-  r.style.display="block";
-  r.innerHTML=`<h2>Score: ${score}/${questions.length} (${pct}%)</h2>
-    <p>${pct>=80?"Strong work. Review the missed questions and make sure the method, not just the answer, makes sense.":
-    pct>=60?"Good practice. The category breakdown below shows where another round will help most.":
-    "Use the explanations below as a study guide, then retry similar problems rather than memorizing these answers."}</p>
-    <div class="breakdown">${breakdown}</div>`;
-  r.scrollIntoView({behavior:"smooth"});
-}
 
-document.getElementById("submitBtn").onclick=submitQuiz;
-document.getElementById("clearBtn").onclick=()=>{
-  if(document.body.dataset.submitted==="1"){ location.reload(); return; }
-  selected.fill(null);
-  document.querySelectorAll(".choice").forEach(b=>b.classList.remove("selected"));
-  updateProgress();
-};
+  const pct = Math.round((score / questions.length) * 100);
+  const result = document.getElementById("result");
+  result.style.display = "block";
+  result.innerHTML = `
+    <div class="score">Score: ${score} / ${questions.length} (${pct}%)</div>
+    <div class="small">Answered: ${answered} / ${questions.length}</div>
+  `;
+  result.scrollIntoView({behavior:"smooth", block:"center"});
+});
+
+document.getElementById("resetBtn").addEventListener("click", () => {
+  form.reset();
+  document.querySelectorAll(".question").forEach(el => el.classList.remove("correct","incorrect"));
+  document.querySelectorAll(".explanation").forEach(el => {
+    el.classList.remove("show");
+    el.textContent = "";
+  });
+  document.getElementById("result").style.display = "none";
+  window.scrollTo({top:0, behavior:"smooth"});
+});
 </script>
 </body>
 </html>
