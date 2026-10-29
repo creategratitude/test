@@ -1,465 +1,1664 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ACT Math Practice Quiz — 50 Questions</title>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="A full-length, original SAT-style practice test with timed modules and detailed feedback."><title>SAT Practice Studio</title>
 <style>
-  :root{
-    --bg:#f5f7fb;
-    --card:#ffffff;
-    --text:#1f2937;
-    --muted:#6b7280;
-    --accent:#4f46e5;
-    --good:#15803d;
-    --bad:#b91c1c;
-    --border:#dbe2ea;
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.5;
-  }
-  header{
-    background:#111827;
-    color:#fff;
-    padding:28px 20px;
-    text-align:center;
-  }
-  header h1{margin:0 0 8px;font-size:clamp(1.7rem,4vw,2.5rem)}
-  header p{margin:0;color:#d1d5db}
-  .wrap{max-width:900px;margin:28px auto;padding:0 16px 60px}
-  .info{
-    background:#eef2ff;
-    border:1px solid #c7d2fe;
-    border-radius:12px;
-    padding:16px;
-    margin-bottom:20px;
-  }
-  .question{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:20px;
-    margin:16px 0;
-    box-shadow:0 2px 8px rgba(0,0,0,.04);
-  }
-  .question h3{margin:0 0 14px;font-size:1.05rem}
-  .option{
-    display:block;
-    padding:10px 12px;
-    border-radius:10px;
-    margin:7px 0;
-    cursor:pointer;
-  }
-  .option:hover{background:#f3f4f6}
-  input[type="radio"]{margin-right:10px}
-  .controls{
-    position:sticky;
-    bottom:0;
-    background:rgba(245,247,251,.96);
-    border-top:1px solid var(--border);
-    padding:14px 0;
-    margin-top:24px;
-    display:flex;
-    gap:12px;
-    flex-wrap:wrap;
-  }
-  button{
-    border:0;
-    border-radius:10px;
-    padding:12px 18px;
-    font-weight:700;
-    cursor:pointer;
-    font-size:1rem;
-  }
-  #gradeBtn{background:var(--accent);color:white}
-  #resetBtn{background:#e5e7eb;color:#111827}
-  #result{
-    margin-top:18px;
-    background:white;
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:20px;
-    display:none;
-  }
-  .correct{border-left:5px solid var(--good)}
-  .incorrect{border-left:5px solid var(--bad)}
-  .explanation{
-    display:none;
-    margin-top:12px;
-    padding:10px 12px;
-    border-radius:8px;
-    background:#f9fafb;
-    color:#374151;
-    font-size:.95rem;
-  }
-  .show{display:block}
-  .score{font-size:1.4rem;font-weight:800;margin-bottom:6px}
-  .small{color:var(--muted);font-size:.92rem}
-</style>
-</head>
-<body>
-<header>
-  <h1>ACT Math Practice Quiz</h1>
-  <p>50 original multiple-choice questions • Self-grading • Explanations included</p>
-</header>
-
-<div class="wrap">
-  <div class="info">
-    <strong>Directions:</strong> Choose the best answer for each question. When finished, click
-    <strong>Grade Quiz</strong>. This is original ACT-style practice, not official ACT material.
-  </div>
-
-  <form id="quizForm"></form>
-
-  <div class="controls">
-    <button type="button" id="gradeBtn">Grade Quiz</button>
-    <button type="button" id="resetBtn">Reset</button>
-  </div>
-
-  <div id="result"></div>
-</div>
-
+:root{--navy:#192943;--blue:#145ec5;--ink:#20242c;--muted:#606775;--line:#d8dce3;--pale:#f4f6f9;--yellow:#f5d54b;--green:#127448;--red:#b32932}*{box-sizing:border-box}body{margin:0;color:var(--ink);font:16px Arial,Helvetica,sans-serif;background:#fff}button,input,select{font:inherit}button,a,input,select{outline-offset:4px}button{cursor:pointer;border:1px solid #b6beca;border-radius:7px;padding:10px 17px;background:#fff;color:var(--navy);font-weight:600}button:hover{background:#eef3fa}button:disabled{opacity:.45;cursor:default}.primary{background:var(--blue);border-color:var(--blue);color:white}.primary:hover{background:#104d9f}.quiet{border:0;background:transparent}.brand{font-size:15px;font-weight:700;letter-spacing:.03em;color:var(--navy)}.badge{font-size:12px;background:#edf2f9;padding:5px 9px;border-radius:20px;display:inline-block;color:#3b506d}.landing{min-height:100vh;background:#f5f7fa}.landing nav{background:white;border-bottom:1px solid var(--line);padding:23px max(24px,calc((100vw - 1120px)/2));display:flex;justify-content:space-between;align-items:center;gap:15px}.wrap{max-width:1120px;margin:auto;padding:48px 24px}.eyebrow{color:#416087;font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase}h1{font-size:44px;line-height:1.12;letter-spacing:-1.5px;margin:14px 0 19px;color:var(--navy)}h2{color:var(--navy);line-height:1.3}p{line-height:1.65}.intro{max-width:780px;color:#4b5565}.setup{display:grid;grid-template-columns:1.6fr 1fr;gap:24px;margin-top:30px}.card{background:white;border:1px solid var(--line);border-radius:12px;padding:28px}.card h2{margin-top:0;font-size:22px}.spec{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;padding:23px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:25px 0}.spec b{display:block;font-size:26px;color:var(--navy)}.spec span{font-size:13px;color:var(--muted)}.field{display:block;margin-bottom:19px;font-weight:600;font-size:14px}.field select{display:block;width:100%;margin-top:8px;padding:11px;border:1px solid #b7c0ce;background:#fff;border-radius:5px}.small{font-size:13px;line-height:1.6;color:var(--muted)}.sources a{color:var(--blue)}.sources{margin-top:25px}.exam-header{height:100px;padding:20px 32px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);gap:16px}.exam-title{font-size:20px;font-weight:700}.header-tools{display:flex;gap:8px;align-items:center}.timer{text-align:center;min-width:130px}.timer b{display:block;font-size:22px;font-variant-numeric:tabular-nums}.timer button{font-size:12px;padding:4px 9px;margin-top:5px}.warning{color:var(--red)}.test-body{display:grid;grid-template-columns:1fr 1fr;height:calc(100dvh - 181px);max-width:1600px;margin:auto}.passage{border-right:1px solid #b5bbc6;padding:34px 44px;overflow:auto;font-family:Georgia,'Times New Roman',serif;font-size:19px;line-height:1.65}.passage p{line-height:1.65}.passage li{margin-bottom:9px}.question{padding:28px 40px;overflow:auto}.math-body{display:block;max-width:850px}.math-body .question{height:100%;padding-top:25px}.qbar{display:flex;align-items:center;gap:12px;background:#f0f2f5;border-bottom:2px solid #68758a;padding-right:7px;margin-bottom:25px;flex-wrap:wrap}.qnumber{background:#253349;color:white;padding:9px 13px;font-weight:bold}.flag{border:0;border-radius:0;background:transparent;font-size:14px;padding:8px}.flag.on{color:#875a00;background:#fff0ba}.eliminate-toggle{margin-left:auto;font-size:13px;padding:7px;background:transparent;border:0}.prompt{font-size:18px;line-height:1.6;margin:0 0 24px}.option-row{display:flex;align-items:center;gap:9px;margin:13px 0}.choice{width:100%;display:flex;gap:14px;align-items:flex-start;text-align:left;border:1px solid #747d8b;border-radius:8px;line-height:1.5;font-weight:400;padding:13px 15px;background:white;color:#1e2633}.letter{border:1px solid #7b8492;border-radius:50%;width:27px;height:27px;flex:0 0 27px;display:grid;place-items:center;font-size:14px}.choice.selected{border:3px solid var(--blue);padding:11px 13px;background:#edf4ff}.selected .letter{background:var(--blue);color:#fff;border-color:var(--blue)}.choice.eliminated{text-decoration:line-through;opacity:.45}.cross{border:0;padding:5px;font-size:18px;min-width:30px}.answer-input{width:220px;max-width:100%;font-size:22px;padding:12px;border:2px solid #5b6879;border-radius:5px}.footer{height:81px;border-top:4px dashed var(--yellow);background:#fafbfc;display:flex;justify-content:space-between;align-items:center;gap:15px;padding:13px 32px}.footer .navbuttons{display:flex;gap:12px}.navigator{font-size:14px;min-width:165px}.autosave{font-size:12px;color:var(--muted);max-width:220px}.modal-overlay{position:fixed;inset:0;background:#14233b66;display:flex;align-items:center;justify-content:center;z-index:40;padding:20px}.modal{background:white;padding:26px;border-radius:12px;max-width:660px;width:100%;max-height:90vh;overflow:auto;box-shadow:0 20px 80px #15274055}.modal-head{display:flex;justify-content:space-between;gap:15px;align-items:center}.modal-head h2{margin:0}.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:24px}.grid{display:grid;grid-template-columns:repeat(9,1fr);gap:9px;margin:22px 0}.grid button{padding:10px 2px;position:relative}.grid button.answered{background:#dfeaff;border-color:#4782d6}.grid button.current{outline:2px solid #182c48}.grid button.marked:after{content:'⚑';position:absolute;top:-10px;right:-3px;color:#946500;background:white;font-size:15px}.break-screen{min-height:100vh;background:#f5f7fa;display:grid;place-items:center;text-align:center;padding:24px}.break-screen .card{max-width:580px;width:100%;padding:45px}.break-clock{font-size:58px;font-weight:bold;color:var(--navy);font-variant-numeric:tabular-nums;margin:30px}.results{background:#f5f7fa;min-height:100vh}.results-header{display:flex;justify-content:space-between;gap:20px;align-items:center}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:28px 0}.stat strong{font-size:34px;color:var(--navy);display:block;margin:12px 0}.stats .card{padding:23px}.domain{display:grid;grid-template-columns:1fr 90px;gap:10px;margin:20px 0}.bar{height:8px;background:#e5eaf0;border-radius:6px;overflow:hidden;grid-column:1/-1}.bar span{display:block;background:#386fb2;height:100%}.review-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:30px 0 20px}.review-controls select{padding:9px;border:1px solid #aeb8c7;border-radius:5px}.review-card{margin-bottom:20px}.review-card .text{font-family:Georgia,serif;line-height:1.65;font-size:18px}.review-card .option-review{padding:10px;border:1px solid #e0e4e9;border-radius:5px;margin:8px 0;line-height:1.5}.correct{background:#edf8f1;border-color:#5da67d!important}.incorrect{background:#fff0f1;border-color:#c97b80!important}.explanation{margin-top:18px;padding:17px 20px;background:#f3f6fa;border-left:3px solid #5176a5;line-height:1.65}.report-actions{display:flex;gap:10px;flex-wrap:wrap}.calc-input{width:100%;padding:12px;font-size:20px;margin:18px 0 8px}.calc-output{font-size:22px;min-height:40px;margin:10px 0}.calc-keys{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.ref-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:15px}.ref-grid p{padding:10px;background:#f4f6f9;margin:0}table{border-collapse:collapse;margin:20px 0;width:100%;font:15px Arial,sans-serif}th,td{border:1px solid #aeb5c0;padding:11px;text-align:left;line-height:1.4}th{background:#eef1f6}a{color:var(--blue)}.banner{background:#fff5d9;padding:12px 16px;border-radius:6px;font-size:14px;line-height:1.6}.module-list{padding-left:22px;font-size:14px;line-height:2}.tools-wrap{display:flex;gap:6px}.status{min-height:18px;color:var(--red);font-size:13px;margin-top:8px}@media(max-width:850px){h1{font-size:34px}.setup{grid-template-columns:1fr}.exam-header{height:auto;min-height:100px;padding:14px 16px}.exam-title{font-size:16px}.header-tools{flex-wrap:wrap;justify-content:flex-end}.tools-wrap button{font-size:12px;padding:8px}.test-body{height:auto;min-height:calc(100dvh - 181px);display:block}.passage{border-right:0;border-bottom:1px solid var(--line);padding:24px;font-size:18px;max-height:43vh}.question{padding:22px 24px;overflow:visible}.footer{position:sticky;bottom:0;padding:12px 14px;height:auto;min-height:81px}.autosave{display:none}.footer button{font-size:13px;padding:10px}.stats{grid-template-columns:1fr}.grid{grid-template-columns:repeat(7,1fr)}.results-header{display:block}.timer{min-width:85px}.ref-grid{grid-template-columns:1fr}.wrap{padding-top:30px}.qbar{gap:3px}.exam-header .small{font-size:11px}}@media print{.report-actions,.review-controls,button,.sources{display:none!important}.results{background:white}.card{break-inside:avoid}.wrap{padding:0}.stats{grid-template-columns:repeat(3,1fr)}h1{font-size:28px}}
+</style></head><body><main id="app"></main><div id="modal-root"></div>
 <script>
-const questions = [
+const QUESTIONS = [
   {
-    q:"1. If 3x + 7 = 25, what is x?",
-    a:["4","5","6","8"], c:2,
-    e:"Subtract 7: 3x = 18. Divide by 3: x = 6."
+    "id": "q1",
+    "m": 0,
+    "domain": "Craft and Structure",
+    "skill": "Words in context",
+    "level": "Easy",
+    "passage": "Because the astronomer’s initial calculation was based on only three observations, she described her conclusion as ______, emphasizing that additional measurements might lead her to revise it.",
+    "prompt": "Which choice completes the text with the most logical and precise word?",
+    "options": [
+      "definitive",
+      "tentative",
+      "redundant",
+      "impartial"
+    ],
+    "answer": 1,
+    "explanation": "Tentative means provisional or subject to revision, matching the limited evidence. Definitive means settled; redundant means repetitive; impartial means unbiased."
   },
   {
-    q:"2. A jacket originally costs $80 and is discounted 25%. What is the sale price?",
-    a:["$55","$60","$65","$70"], c:1,
-    e:"25% of $80 is $20, so the sale price is $80 − $20 = $60."
+    "id": "q2",
+    "m": 0,
+    "domain": "Craft and Structure",
+    "skill": "Words in context",
+    "level": "Medium",
+    "passage": "Unlike older maps, which omitted seasonal waterways, the new atlas ______ these features, showing even channels that carry water for only a few weeks each year.",
+    "prompt": "Which choice completes the text with the most logical and precise word?",
+    "options": [
+      "obscures",
+      "disputes",
+      "incorporates",
+      "exaggerates"
+    ],
+    "answer": 2,
+    "explanation": "Incorporates means includes. The contrast concerns omission versus inclusion, not accuracy or exaggeration."
   },
   {
-    q:"3. What is the slope of the line through (2, 5) and (6, 13)?",
-    a:["1","2","3","4"], c:1,
-    e:"Slope = (13 − 5)/(6 − 2) = 8/4 = 2."
+    "id": "q3",
+    "m": 0,
+    "domain": "Craft and Structure",
+    "skill": "Words in context",
+    "level": "Medium",
+    "passage": "The two historians agree on the sequence of events but offer ______ accounts of their causes: one emphasizes economic pressures, whereas the other attributes the changes primarily to political rivalry.",
+    "prompt": "Which choice completes the text with the most logical and precise word?",
+    "options": [
+      "divergent",
+      "incidental",
+      "exhaustive",
+      "interchangeable"
+    ],
+    "answer": 0,
+    "explanation": "Divergent means differing. The historians disagree about causes even though they agree about chronology. Nothing establishes that either account is exhaustive."
   },
   {
-    q:"4. Simplify: 2(3x − 4) + 5.",
-    a:["6x − 3","6x − 8","5x + 1","6x + 1"], c:0,
-    e:"Distribute: 6x − 8 + 5 = 6x − 3."
+    "id": "q4",
+    "m": 0,
+    "domain": "Craft and Structure",
+    "skill": "Words in context",
+    "level": "Hard",
+    "passage": "The historian’s description of the archive as “silent” is not literal. Rather, it ______ the absence of ordinary laborers’ perspectives from a collection dominated by officials’ reports.",
+    "prompt": "Which choice completes the text with the most logical and precise word?",
+    "options": [
+      "rectifies",
+      "precludes",
+      "discredits",
+      "underscores"
+    ],
+    "answer": 3,
+    "explanation": "Underscores means emphasizes. The description draws attention to the absence; it does not correct it, prevent it, or prove it false."
   },
   {
-    q:"5. The ratio of boys to girls in a club is 3:5. If there are 40 students total, how many are boys?",
-    a:["12","15","18","24"], c:1,
-    e:"There are 8 ratio parts total. 40 ÷ 8 = 5 per part, and 3 × 5 = 15 boys."
+    "id": "q5",
+    "m": 0,
+    "domain": "Craft and Structure",
+    "skill": "Text structure and purpose",
+    "level": "Medium",
+    "passage": "Some restoration projects remove every trace of a building’s later alterations. Architect Mira Chen takes a different approach. In a converted warehouse, she retained a staircase added decades after the original construction, arguing that the addition revealed how successive occupants had used the space. To her, restoring a building can mean preserving evidence of change.",
+    "prompt": "Which choice best states the main purpose of the text?",
+    "options": [
+      "To argue that warehouse conversions are less costly than other restoration projects",
+      "To illustrate an approach to restoration that values a building’s accumulated history",
+      "To explain why later additions are structurally stronger than original features",
+      "To question whether architects can determine when a building was constructed"
+    ],
+    "answer": 1,
+    "explanation": "The retained staircase exemplifies Chen’s view that later changes are part of a building’s history. Costs, structural strength, and uncertainty about dates are not discussed."
   },
   {
-    q:"6. Solve: x² − 9 = 0.",
-    a:["x = 3 only","x = −3 only","x = ±3","x = 9"], c:2,
-    e:"x² = 9, so x = 3 or x = −3."
+    "id": "q6",
+    "m": 0,
+    "domain": "Craft and Structure",
+    "skill": "Text structure and purpose",
+    "level": "Medium",
+    "passage": "For years, researchers inferred the diet of a vanished seabird from the shapes of its surviving beaks. <u>A recent analysis instead examined chemical signatures in preserved feathers.</u> The findings suggest that the bird fed farther offshore than the beak-based reconstructions had indicated.",
+    "prompt": "Which choice best describes the function of the underlined sentence in the text as a whole?",
+    "options": [
+      "It provides the conclusion of the earlier studies.",
+      "It explains why preserved feathers are always more reliable than bones.",
+      "It introduces a different method whose results challenge an earlier inference.",
+      "It identifies a flaw that invalidates every reconstruction of the bird’s diet."
+    ],
+    "answer": 2,
+    "explanation": "The underlined sentence introduces the feather method; the following sentence explains its challenge to previous diet inferences. The passage does not make an absolute claim about reliability."
   },
   {
-    q:"7. A circle has radius 6. What is its area?",
-    a:["12π","18π","36π","72π"], c:2,
-    e:"Area = πr² = π(6²) = 36π."
+    "id": "q7",
+    "m": 0,
+    "domain": "Craft and Structure",
+    "skill": "Cross-text connections",
+    "level": "Hard",
+    "passage": "<b>Text 1</b><p>Digitizing rare manuscripts gives researchers far from major libraries access to materials they could not otherwise consult. For many historical questions, a high-resolution image provides the evidence a scholar needs.</p><b>Text 2</b><p>Digital images are invaluable, but they cannot fully represent an object. Differences in paper thickness or the pressure of a pen may reveal how a manuscript was produced. Such questions still require examining the physical document.</p>",
+    "prompt": "How would the author of Text 2 most likely respond to Text 1?",
+    "options": [
+      "Digitization has made physical libraries unnecessary.",
+      "Researchers should avoid digital images when studying history.",
+      "High-resolution images cannot accurately reproduce handwriting.",
+      "Digital access is useful, although some investigations require the original object."
+    ],
+    "answer": 3,
+    "explanation": "Text 2 explicitly values digital images while identifying physical properties they cannot fully capture. It qualifies the usefulness of digitization rather than rejecting it."
   },
   {
-    q:"8. If f(x) = 2x² − 3, what is f(4)?",
-    a:["13","21","29","35"], c:2,
-    e:"f(4) = 2(16) − 3 = 32 − 3 = 29."
+    "id": "q8",
+    "m": 0,
+    "domain": "Craft and Structure",
+    "skill": "Text structure and purpose",
+    "level": "Hard",
+    "passage": "The botanist did not claim that urban trees grew slowly because of pollution alone. Her team had also recorded soil compaction, limited root space, and irregular watering. By measuring these conditions separately, the team sought to distinguish the effects of factors that often occur together.",
+    "prompt": "Which choice best states the main purpose of the text?",
+    "options": [
+      "To describe an effort to separate potentially overlapping explanations",
+      "To establish that air pollution has no effect on urban trees",
+      "To criticize researchers for collecting too many measurements",
+      "To show that urban trees have adapted to compacted soil"
+    ],
+    "answer": 0,
+    "explanation": "The focus is the design of a study that separates co-occurring factors. The text does not report results proving any factor harmless or showing adaptation."
   },
   {
-    q:"9. What is 15% of 240?",
-    a:["24","30","36","40"], c:2,
-    e:"0.15 × 240 = 36."
+    "id": "q9",
+    "m": 0,
+    "domain": "Information and Ideas",
+    "skill": "Central ideas",
+    "level": "Easy",
+    "passage": "A neighborhood library began lending basic repair tools alongside books. Staff expected the tools to appeal mainly to experienced hobbyists. Instead, many borrowers were first-time users who attended the library’s introductory workshops. The library subsequently expanded those workshops and began including illustrated instruction cards with each tool.",
+    "prompt": "Which choice best states the main idea of the text?",
+    "options": [
+      "The library stopped lending books when demand for tools increased.",
+      "Experienced hobbyists were the only people who borrowed tools.",
+      "The library adjusted its support after discovering who used its tool collection.",
+      "Illustrated cards eliminated the need for introductory workshops."
+    ],
+    "answer": 2,
+    "explanation": "Unexpected demand from beginners led to more workshops and instruction cards. The other choices contradict or exceed the passage."
   },
   {
-    q:"10. The average of 8, 11, 14, and x is 12. What is x?",
-    a:["12","13","15","17"], c:2,
-    e:"A mean of 12 for 4 values means a total of 48. The known values sum to 33, so x = 15."
+    "id": "q10",
+    "m": 0,
+    "domain": "Information and Ideas",
+    "skill": "Details",
+    "level": "Easy",
+    "passage": "To document changes in a coastal marsh, a research team photographed the same marked plots each spring for twelve years. The team chose spring because vegetation was easier to distinguish before summer growth obscured the boundaries between species. Using marked plots allowed the researchers to compare the same locations over time.",
+    "prompt": "According to the text, why did the team take photographs in spring?",
+    "options": [
+      "It allowed them to distinguish vegetation more easily.",
+      "It ensured that every species had finished growing.",
+      "It removed the need to return to marked plots.",
+      "It made twelve years of observations unnecessary."
+    ],
+    "answer": 0,
+    "explanation": "The passage directly says spring growth made vegetation easier to distinguish. It does not say growth was finished."
   },
   {
-    q:"11. Which expression is equivalent to (x + 4)(x − 2)?",
-    a:["x² + 2x − 8","x² − 2x − 8","x² + 6x − 8","x² + 2x + 8"], c:0,
-    e:"FOIL gives x² − 2x + 4x − 8 = x² + 2x − 8."
+    "id": "q11",
+    "m": 0,
+    "domain": "Information and Ideas",
+    "skill": "Command of evidence",
+    "level": "Medium",
+    "passage": "A researcher proposes that small rooftop gardens can provide food for pollinating insects even when the gardens are far from large parks. She compares observations from gardens located at varying distances from parks.",
+    "prompt": "Which finding, if true, would most directly support the researcher’s proposal?",
+    "options": [
+      "The gardens nearest parks were larger than the other gardens.",
+      "Several garden owners preferred flowering plants to vegetables.",
+      "Large parks contained a greater variety of trees than rooftop gardens.",
+      "Bees regularly collected pollen in rooftop gardens more than two kilometers from the nearest park."
+    ],
+    "answer": 3,
+    "explanation": "Actual pollen collection in distant rooftop gardens directly supports the claim that those gardens provide food. Preferences and tree diversity do not test the claim."
   },
   {
-    q:"12. A right triangle has legs of length 9 and 12. What is the hypotenuse?",
-    a:["13","15","18","21"], c:1,
-    e:"By the Pythagorean theorem: √(9² + 12²) = √225 = 15."
+    "id": "q12",
+    "m": 0,
+    "domain": "Information and Ideas",
+    "skill": "Quantitative evidence",
+    "level": "Medium",
+    "passage": "A team measured average seedling height after four weeks under three lighting conditions.<table><tr><th>Light each day</th><th>Average height (cm)</th></tr><tr><td>6 hours</td><td>8</td></tr><tr><td>10 hours</td><td>13</td></tr><tr><td>14 hours</td><td>14</td></tr></table>The team notes that increasing light duration was associated with greater height, but the increase in height was smaller for the second four-hour increment.",
+    "prompt": "Which choice best uses data from the table to support the team’s observation?",
+    "options": [
+      "Height increased by the same amount with each four-hour increase.",
+      "Height increased by 5 cm from 6 to 10 hours of light, but by only 1 cm from 10 to 14 hours.",
+      "Seedlings receiving 14 hours of light were twice as tall as those receiving 6 hours.",
+      "Seedlings receiving 10 hours of light were shorter than those receiving 6 hours."
+    ],
+    "answer": 1,
+    "explanation": "The differences are 13 − 8 = 5 cm and 14 − 13 = 1 cm. These values support diminishing height gains for the second increment."
   },
   {
-    q:"13. If 5y − 2 = 3y + 10, what is y?",
-    a:["4","5","6","8"], c:2,
-    e:"Subtract 3y: 2y − 2 = 10. Add 2: 2y = 12, so y = 6."
+    "id": "q13",
+    "m": 0,
+    "domain": "Information and Ideas",
+    "skill": "Inferences",
+    "level": "Medium",
+    "passage": "A museum displayed two identical reproductions of a sculpture in separate rooms. One label identified its material as recycled industrial metal; the other provided only its dimensions. Visitors who saw the material label were more likely to discuss environmental issues in their written responses, even though both groups saw the same form. The results suggest that ______",
+    "prompt": "Which choice best completes the text?",
+    "options": [
+      "a sculpture’s shape determines every response to it.",
+      "visitors can always identify recycled metal by sight.",
+      "context supplied by a label can influence how visitors interpret an artwork.",
+      "environmental themes are present in all metal sculpture."
+    ],
+    "answer": 2,
+    "explanation": "The only described difference is the label, and responses differed accordingly. This supports an influence of context, not universal claims about sculpture or perception."
   },
   {
-    q:"14. A car travels 180 miles in 3 hours at a constant speed. How far will it travel in 5 hours?",
-    a:["250 miles","275 miles","300 miles","325 miles"], c:2,
-    e:"Speed = 180 ÷ 3 = 60 mph. In 5 hours: 60 × 5 = 300 miles."
+    "id": "q14",
+    "m": 0,
+    "domain": "Information and Ideas",
+    "skill": "Command of evidence",
+    "level": "Hard",
+    "passage": "A literary scholar argues that a fictional narrator feels affection for a town while also recognizing its limitations.",
+    "prompt": "Which quotation from the fictional work would most directly support the scholar’s argument?",
+    "options": [
+      "“I knew each crooked lane by heart and loved them still, though none seemed to lead beyond the lives we had already imagined.”",
+      "“At dawn the town was hidden by a fog so dense that even the station clock disappeared.”",
+      "“The new square was larger than the old one, and the market stalls had been moved to its eastern edge.”",
+      "“I left without a glance behind me, grateful that I would never again hear those familiar bells.”"
+    ],
+    "answer": 0,
+    "explanation": "Love of familiar lanes conveys affection, while their seeming inability to lead to new lives conveys limitations. The final quotation conveys rejection without the required affection."
   },
   {
-    q:"15. What is the value of |−7| + |3|?",
-    a:["4","10","−4","−10"], c:1,
-    e:"|−7| = 7 and |3| = 3, so the sum is 10."
+    "id": "q15",
+    "m": 0,
+    "domain": "Information and Ideas",
+    "skill": "Inferences",
+    "level": "Hard",
+    "passage": "An excavation uncovered fragments of a type of ceramic previously known only from a distant region. Chemical analysis showed that the fragments had been made from local clay, while their decorative patterns closely resembled those of the distant ceramics. The archaeologists therefore suggest that ______",
+    "prompt": "Which choice best completes the text?",
+    "options": [
+      "all ceramics found at the site were imported.",
+      "the distant region obtained its clay from the excavation site.",
+      "decorative patterns cannot provide evidence of cultural contact.",
+      "the style may have traveled between communities even when the finished objects did not."
+    ],
+    "answer": 3,
+    "explanation": "Local clay supports local manufacture; a shared style suggests transmitted ideas or techniques. Neither long-distance clay shipments nor universal claims about imports follow."
   },
   {
-    q:"16. If 2/3 = x/18, what is x?",
-    a:["6","9","12","15"], c:2,
-    e:"Cross-multiply: 3x = 36, so x = 12."
+    "id": "q16",
+    "m": 0,
+    "domain": "Standard English Conventions",
+    "skill": "Subject–verb agreement",
+    "level": "Easy",
+    "passage": "The collection of letters written by the expedition’s members ______ an unusually detailed account of daily life at the camp.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "provide",
+      "provides",
+      "have provided",
+      "were providing"
+    ],
+    "answer": 1,
+    "explanation": "The subject is the singular collection, not the plural letters or members. Provides agrees with collection."
   },
   {
-    q:"17. What is the y-intercept of y = −4x + 9?",
-    a:["−4","4","9","−9"], c:2,
-    e:"In y = mx + b, the y-intercept is b. Here b = 9."
+    "id": "q17",
+    "m": 0,
+    "domain": "Standard English Conventions",
+    "skill": "Sentence boundaries",
+    "level": "Medium",
+    "passage": "The observatory was built far from the city ______ its remote location reduced interference from artificial light.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "center,",
+      "center and,",
+      "center;",
+      "center which"
+    ],
+    "answer": 2,
+    "explanation": "Both sides are independent clauses, so a semicolon joins them correctly. A comma alone creates a comma splice."
   },
   {
-    q:"18. A rectangular garden is 12 ft by 7 ft. What is its perimeter?",
-    a:["38 ft","42 ft","84 ft","19 ft"], c:0,
-    e:"Perimeter = 2(12 + 7) = 38 ft."
+    "id": "q18",
+    "m": 0,
+    "domain": "Standard English Conventions",
+    "skill": "Possessives",
+    "level": "Medium",
+    "passage": "Each of the two laboratories submitted a report. The committee then compared the two ______ conclusions before recommending further trials.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "laboratories’",
+      "laboratory’s",
+      "laboratories",
+      "laboratories’s"
+    ],
+    "answer": 0,
+    "explanation": "The conclusions belong to two laboratories. The plural possessive of laboratories is laboratories’ (apostrophe after s)."
   },
   {
-    q:"19. Simplify: 3x² · 4x³.",
-    a:["7x⁵","12x⁵","12x⁶","7x⁶"], c:1,
-    e:"Multiply coefficients: 3 × 4 = 12. Add exponents: x²·x³ = x⁵."
+    "id": "q19",
+    "m": 0,
+    "domain": "Standard English Conventions",
+    "skill": "Modifiers",
+    "level": "Medium",
+    "passage": "After examining the aerial photographs, ______",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "several previously unnoticed paths appeared to the researcher.",
+      "the location of several paths was identified.",
+      "there were several paths that the researcher identified.",
+      "the researcher identified several previously unnoticed paths."
+    ],
+    "answer": 3,
+    "explanation": "The opening modifier must describe the subject of the main clause: the researcher examined the photographs. The other subjects did not examine them."
   },
   {
-    q:"20. If x > 0 and x² = 49, what is x?",
-    a:["−7","7","49","±7"], c:1,
-    e:"x² = 49 gives ±7, but x > 0, so x = 7."
+    "id": "q20",
+    "m": 0,
+    "domain": "Standard English Conventions",
+    "skill": "Verb tense",
+    "level": "Medium",
+    "passage": "By the time the restoration began in 2019, conservators ______ the mural’s surface for nearly a decade.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "will monitor",
+      "had monitored",
+      "are monitoring",
+      "have been monitoring"
+    ],
+    "answer": 1,
+    "explanation": "Past perfect had monitored places the monitoring before another past event, the start of restoration in 2019."
   },
   {
-    q:"21. The probability of drawing a red marble from a bag is 3/8. If there are 24 marbles total, how many are red?",
-    a:["6","8","9","12"], c:2,
-    e:"(3/8) × 24 = 9."
+    "id": "q21",
+    "m": 0,
+    "domain": "Standard English Conventions",
+    "skill": "Nonessential elements",
+    "level": "Hard",
+    "passage": "The instrument’s outer shell—an alloy developed for aerospace ______ the internal sensors from sudden changes in temperature.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "applications, protects",
+      "applications protects",
+      "applications—protects",
+      "applications; protects"
+    ],
+    "answer": 2,
+    "explanation": "A second dash closes the nonessential phrase begun by the first dash. Removing that phrase leaves The instrument’s outer shell protects the internal sensors."
   },
   {
-    q:"22. Solve the inequality: 4x − 5 < 11.",
-    a:["x < 4","x > 4","x < 6","x > 6"], c:0,
-    e:"Add 5: 4x < 16. Divide by 4: x < 4."
+    "id": "q22",
+    "m": 0,
+    "domain": "Standard English Conventions",
+    "skill": "Colon usage",
+    "level": "Hard",
+    "passage": "The survey revealed a surprising ______ residents who rarely visited the waterfront were nevertheless its strongest advocates.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "pattern:",
+      "pattern,",
+      "pattern; that",
+      "pattern that:"
+    ],
+    "answer": 0,
+    "explanation": "The complete clause before the colon introduces the explanation after it. A comma would splice two independent clauses; a colon cannot follow the incomplete phrase pattern that."
   },
   {
-    q:"23. What is the midpoint of the segment joining (−2, 6) and (4, 10)?",
-    a:["(1, 8)","(2, 8)","(1, 16)","(6, 4)"], c:0,
-    e:"Midpoint = ((−2 + 4)/2, (6 + 10)/2) = (1, 8)."
+    "id": "q23",
+    "m": 0,
+    "domain": "Expression of Ideas",
+    "skill": "Transitions",
+    "level": "Easy",
+    "passage": "The first prototype weighed nearly four kilograms, making it difficult to carry. ______, the revised model weighed less than one kilogram while retaining the same functions.",
+    "prompt": "Which choice completes the text with the most logical transition?",
+    "options": [
+      "For instance",
+      "Similarly",
+      "As a result",
+      "By contrast"
+    ],
+    "answer": 3,
+    "explanation": "The sentence contrasts the weights of two models. It does not give an example of the first model or establish that weight loss was an automatic result."
   },
   {
-    q:"24. A population of 500 increases by 8%. What is the new population?",
-    a:["508","540","580","625"], c:1,
-    e:"8% of 500 is 40, so the new population is 540."
+    "id": "q24",
+    "m": 0,
+    "domain": "Expression of Ideas",
+    "skill": "Transitions",
+    "level": "Medium",
+    "passage": "The archive’s catalog originally listed the anonymous poems under a single author. Handwriting analysis later revealed that at least four people had copied them. ______, differences among the copies suggested that some poems had circulated in several versions.",
+    "prompt": "Which choice completes the text with the most logical transition?",
+    "options": [
+      "Nevertheless",
+      "Furthermore",
+      "Instead",
+      "For example"
+    ],
+    "answer": 1,
+    "explanation": "Furthermore adds another finding to the handwriting evidence. There is no reversal, and variation among copies is not an example of the number of copyists."
   },
   {
-    q:"25. If 2x + 3y = 18 and x = 3, what is y?",
-    a:["2","3","4","6"], c:2,
-    e:"Substitute x = 3: 6 + 3y = 18, so 3y = 12 and y = 4."
+    "id": "q25",
+    "m": 0,
+    "domain": "Expression of Ideas",
+    "skill": "Rhetorical synthesis",
+    "level": "Medium",
+    "passage": "A student took these notes:<ul><li>Engineer Lina Soto designed two water filters.</li><li>Filter A uses a replaceable paper membrane.</li><li>Filter B uses a washable ceramic membrane.</li><li>Both filters remove particles larger than 0.5 micrometers.</li></ul>",
+    "prompt": "The student wants to emphasize a difference between the filters. Which choice most effectively uses relevant information from the notes to accomplish this goal?",
+    "options": [
+      "Lina Soto designed two filters that use membranes to remove particles from water.",
+      "Filter A removes particles larger than 0.5 micrometers using a membrane.",
+      "Although both filters remove the same range of particle sizes, A has a replaceable paper membrane and B has a washable ceramic one.",
+      "Ceramic membranes can be used in filters designed by engineers such as Lina Soto."
+    ],
+    "answer": 2,
+    "explanation": "Only this choice directly compares both membrane materials and how each is maintained. The alternatives omit one or both sides of the relevant difference."
   },
   {
-    q:"26. Which value is equal to 4⁻²?",
-    a:["−16","−1/16","1/8","1/16"], c:3,
-    e:"A negative exponent means reciprocal: 4⁻² = 1/4² = 1/16."
+    "id": "q26",
+    "m": 0,
+    "domain": "Expression of Ideas",
+    "skill": "Rhetorical synthesis",
+    "level": "Medium",
+    "passage": "A student took these notes:<ul><li>The fictional city of Bellhaven opened its first public garden in 1892.</li><li>The garden occupied a former freight yard.</li><li>Residents donated plants and volunteered to prepare the soil.</li><li>The garden is still maintained by a neighborhood association.</li></ul>",
+    "prompt": "The student wants to emphasize the community’s continuing role in the garden. Which choice most effectively uses relevant information from the notes?",
+    "options": [
+      "Community involvement has shaped Bellhaven’s garden from its creation, when residents supplied plants and labor, to its present maintenance by a neighborhood association.",
+      "Bellhaven opened its first public garden in 1892 on land formerly used as a freight yard.",
+      "The garden’s plants were donated in 1892, the year the garden opened.",
+      "Freight yards can be converted into public gardens, as Bellhaven demonstrated."
+    ],
+    "answer": 0,
+    "explanation": "This choice connects residents’ original contributions to the present association, emphasizing sustained community involvement. The others focus on dates or land use."
   },
   {
-    q:"27. A square has area 121 square inches. What is its perimeter?",
-    a:["22 in","33 in","44 in","121 in"], c:2,
-    e:"Side length = √121 = 11. Perimeter = 4 × 11 = 44 inches."
+    "id": "q27",
+    "m": 0,
+    "domain": "Expression of Ideas",
+    "skill": "Transitions",
+    "level": "Hard",
+    "passage": "Some early reviewers dismissed the novel’s repeated scenes as unnecessary. Later critics argued that each repetition subtly changed the reader’s understanding of the protagonist. ______, what had seemed merely redundant could be understood as a deliberate narrative technique.",
+    "prompt": "Which choice completes the text with the most logical transition?",
+    "options": [
+      "Even so",
+      "In the meantime",
+      "For a different reason",
+      "In this view"
+    ],
+    "answer": 3,
+    "explanation": "In this view signals an interpretation that follows from the later critics’ argument. Even so would introduce a contrast rather than restate the implication."
   },
   {
-    q:"28. If g(x) = 5 − 2x, for what x is g(x) = −9?",
-    a:["2","5","7","9"], c:2,
-    e:"5 − 2x = −9. Then −2x = −14, so x = 7."
+    "id": "q28",
+    "m": 1,
+    "domain": "Craft and Structure",
+    "skill": "Words in context",
+    "level": "Medium",
+    "passage": "The researcher warned that an average could ______ important differences among individual neighborhoods: a stable citywide rate might conceal rising rates in some areas and falling rates in others.",
+    "prompt": "Which choice completes the text with the most logical and precise word?",
+    "options": [
+      "quantify",
+      "mask",
+      "resolve",
+      "anticipate"
+    ],
+    "answer": 1,
+    "explanation": "Mask means conceal. Opposing changes can disappear in an aggregate average; quantify would mean measure rather than conceal."
   },
   {
-    q:"29. What is the median of 3, 7, 9, 12, 15, 18, 21?",
-    a:["9","12","13","15"], c:1,
-    e:"There are 7 ordered values, so the 4th value is the median: 12."
+    "id": "q29",
+    "m": 1,
+    "domain": "Craft and Structure",
+    "skill": "Words in context",
+    "level": "Hard",
+    "passage": "Far from treating the composer’s unfinished sketches as ______, the pianist studied them closely, finding in their crossed-out phrases clues to decisions concealed by the polished score.",
+    "prompt": "Which choice completes the text with the most logical and precise word?",
+    "options": [
+      "authoritative",
+      "accessible",
+      "inconsequential",
+      "innovative"
+    ],
+    "answer": 2,
+    "explanation": "Inconsequential means unimportant. Far from sets up a contrast with close study and valuable clues. Authoritative concerns authority, not whether the sketches are worth attention."
   },
   {
-    q:"30. A bag contains 5 blue, 4 green, and 3 yellow marbles. What is the probability of selecting a green marble?",
-    a:["1/4","1/3","4/9","4/5"], c:1,
-    e:"There are 12 marbles total and 4 green. Probability = 4/12 = 1/3."
+    "id": "q30",
+    "m": 1,
+    "domain": "Craft and Structure",
+    "skill": "Words in context",
+    "level": "Hard",
+    "passage": "The new evidence did not ______ the prevailing explanation; rather, it narrowed the circumstances under which that explanation could reasonably be applied.",
+    "prompt": "Which choice completes the text with the most logical and precise word?",
+    "options": [
+      "supplant",
+      "corroborate",
+      "articulate",
+      "presuppose"
+    ],
+    "answer": 0,
+    "explanation": "Supplant means replace. The explanation was retained with a narrower scope. Corroborate means support; the contrast is between replacement and qualification."
   },
   {
-    q:"31. What is the solution to 2(x − 3) = 3x + 4?",
-    a:["−10","−4","4","10"], c:0,
-    e:"2x − 6 = 3x + 4. Subtract 2x: −6 = x + 4, so x = −10."
+    "id": "q31",
+    "m": 1,
+    "domain": "Craft and Structure",
+    "skill": "Text structure and purpose",
+    "level": "Medium",
+    "passage": "At first glance, the artist’s hundreds of tiny ceramic vessels appear interchangeable. Viewed closely, however, each bears a distinct indentation made by the artist’s thumb. The installation thus draws attention to the tension between repetition and individuality: its overall regularity depends on objects that are never quite identical.",
+    "prompt": "Which choice best states the main purpose of the text?",
+    "options": [
+      "To explain a manufacturing technique that guarantees identical vessels",
+      "To argue that small artworks are less expressive than large ones",
+      "To contrast the artist’s early work with a later installation",
+      "To show how the relationship between a work’s parts and its whole creates meaning"
+    ],
+    "answer": 3,
+    "explanation": "The passage moves from the repeated overall pattern to unique marks on individual parts, then explains the artistic tension. No earlier work or size comparison is presented."
   },
   {
-    q:"32. If the angles of a triangle are 2x, 3x, and 4x degrees, what is x?",
-    a:["15","20","25","30"], c:1,
-    e:"Triangle angles total 180°. 2x + 3x + 4x = 9x = 180, so x = 20."
+    "id": "q32",
+    "m": 1,
+    "domain": "Craft and Structure",
+    "skill": "Cross-text connections",
+    "level": "Hard",
+    "passage": "<b>Text 1</b><p>When readers annotate a poem, they must make their interpretations explicit. Because the practice draws attention to details that might otherwise pass unnoticed, annotation is likely to deepen understanding.</p><b>Text 2</b><p>In one classroom study, students asked to annotate every line identified many isolated devices but struggled to explain the poem’s overall movement. Students who annotated selectively produced more coherent interpretations. The benefit of annotation may depend on how it is used.</p>",
+    "prompt": "How would the author of Text 2 most likely respond to the reasoning in Text 1?",
+    "options": [
+      "It is wrong because annotation cannot help readers notice details.",
+      "Its claim needs qualification because a particular approach to annotation can interfere with overall understanding.",
+      "It is supported because the students who annotated every line understood the poem best.",
+      "It is irrelevant because understanding poetry cannot be studied in classrooms."
+    ],
+    "answer": 1,
+    "explanation": "Text 2 distinguishes selective from exhaustive annotation. It qualifies a broad benefit, without rejecting annotation or classroom research entirely."
   },
   {
-    q:"33. Simplify: (6x³)/(2x), assuming x ≠ 0.",
-    a:["3x","3x²","4x²","3x³"], c:1,
-    e:"6/2 = 3 and x³/x = x², so the result is 3x²."
+    "id": "q33",
+    "m": 1,
+    "domain": "Craft and Structure",
+    "skill": "Text structure and purpose",
+    "level": "Hard",
+    "passage": "Researchers found that a certain coastal plant grew taller in plots receiving added nitrogen. <u>The result alone, however, could not establish that nitrogen availability limited the plant’s growth under ordinary conditions.</u> The added nitrogen might instead have altered competition with neighboring species. A second experiment removed those neighbors to distinguish the two explanations.",
+    "prompt": "Which choice best describes the function of the underlined sentence?",
+    "options": [
+      "It restates the main finding in less technical language.",
+      "It dismisses the possibility that neighboring species affect growth.",
+      "It identifies a limit on an inference and motivates the experiment that follows.",
+      "It confirms that the second experiment produced the same result as the first."
+    ],
+    "answer": 2,
+    "explanation": "The sentence limits what can be inferred from the first result. The competing explanation then motivates a new experiment; its result is not given."
   },
   {
-    q:"34. A number is increased by 20% and becomes 72. What was the original number?",
-    a:["54","58","60","64"], c:2,
-    e:"If the original is n, then 1.20n = 72. Thus n = 60."
+    "id": "q34",
+    "m": 1,
+    "domain": "Craft and Structure",
+    "skill": "Cross-text connections",
+    "level": "Hard",
+    "passage": "<b>Text 1</b><p>Sound recordings have preserved performances that written notation cannot fully capture. A singer’s flexible timing, for example, may resist transcription but remain audible in a recording.</p><b>Text 2</b><p>Early recordings did not simply preserve musical practice. Because recording equipment limited duration and frequency range, performers sometimes shortened pieces or changed instruments. The recorded performance was partly shaped by the medium.</p>",
+    "prompt": "Based on the texts, which statement would both authors most likely accept?",
+    "options": [
+      "A recording can preserve performance details while also reflecting constraints that changed the performance itself.",
+      "Written notation preserves every feature lost in early recordings.",
+      "Early performers generally refused to adapt to recording equipment.",
+      "Recorded music is less valuable to researchers than written notation in every case."
+    ],
+    "answer": 0,
+    "explanation": "Together, the texts support both preservation of details and alteration by recording constraints. Neither supports a universal ranking of recordings and notation."
   },
   {
-    q:"35. What is the distance between 2 and −11 on the number line?",
-    a:["9","11","13","15"], c:2,
-    e:"Distance = |2 − (−11)| = |13| = 13."
+    "id": "q35",
+    "m": 1,
+    "domain": "Information and Ideas",
+    "skill": "Central ideas",
+    "level": "Medium",
+    "passage": "A historian studying market regulations found that official decrees repeatedly prohibited the same trading practice over several decades. Rather than taking the decrees as evidence that the practice had disappeared, she treated their repetition as a sign that authorities may have struggled to suppress it. Documents describing what people were supposed to do, she argued, need not describe what they actually did.",
+    "prompt": "Which choice best states the main idea?",
+    "options": [
+      "The decrees conclusively prove that every trader broke the law.",
+      "Trading practices changed only when authorities issued new decrees.",
+      "Official records have no value for historians studying markets.",
+      "Repeated prohibitions can suggest a gap between official rules and actual behavior."
+    ],
+    "answer": 3,
+    "explanation": "The historian interprets repetition cautiously as evidence of a possible gap. The passage neither dismisses records nor proves universal noncompliance."
   },
   {
-    q:"36. If sin θ = 3/5 for an acute angle θ, what is cos θ?",
-    a:["2/5","3/4","4/5","5/3"], c:2,
-    e:"A 3-4-5 right triangle has opposite/hypotenuse = 3/5, so adjacent/hypotenuse = 4/5."
+    "id": "q36",
+    "m": 1,
+    "domain": "Information and Ideas",
+    "skill": "Command of evidence",
+    "level": "Hard",
+    "passage": "A team argues that a newly observed difference in the timing of bird migration is a response to local food availability, rather than simply to temperature. The team needs evidence that separates the two explanations.",
+    "prompt": "Which finding, if true, would most directly support the team’s argument over the alternative?",
+    "options": [
+      "The birds migrate each year and feed on insects.",
+      "At sites with similar spring temperatures, migration dates shifted with the timing of insect emergence.",
+      "The warmest sites had both the earliest insect emergence and the earliest migration.",
+      "Some bird species eat seeds as well as insects."
+    ],
+    "answer": 1,
+    "explanation": "Holding temperature roughly similar while food timing differs helps isolate the food explanation. When both vary together, their effects cannot be distinguished."
   },
   {
-    q:"37. What is the vertex x-coordinate of y = x² − 8x + 5?",
-    a:["−4","2","4","8"], c:2,
-    e:"For y = ax² + bx + c, the vertex x-coordinate is −b/(2a) = 8/2 = 4."
+    "id": "q37",
+    "m": 1,
+    "domain": "Information and Ideas",
+    "skill": "Quantitative evidence",
+    "level": "Medium",
+    "passage": "A researcher tested two coatings on otherwise identical metal samples. Lower mass loss indicates greater resistance to corrosion.<table><tr><th>Coating</th><th>Mass loss after 10 days (mg)</th><th>Mass loss after 30 days (mg)</th></tr><tr><td>A</td><td>3</td><td>12</td></tr><tr><td>B</td><td>5</td><td>8</td></tr></table>The researcher concludes that the relative performance of the coatings depends on the duration of exposure.",
+    "prompt": "Which choice best supports the researcher’s conclusion with data from the table?",
+    "options": [
+      "Both coatings lost less mass after 30 days than after 10 days.",
+      "Coating A performed better at both measurement times.",
+      "Coating A lost less mass at 10 days, but coating B lost less mass at 30 days.",
+      "The two coatings had identical mass loss at 10 days."
+    ],
+    "answer": 2,
+    "explanation": "At 10 days A loses 3 versus 5 mg; at 30 days B loses 8 versus 12 mg. The ranking reverses, supporting the duration-dependent conclusion."
   },
   {
-    q:"38. A cylinder has radius 3 and height 10. What is its volume?",
-    a:["30π","60π","90π","180π"], c:2,
-    e:"Volume = πr²h = π(9)(10) = 90π."
+    "id": "q38",
+    "m": 1,
+    "domain": "Information and Ideas",
+    "skill": "Inferences",
+    "level": "Hard",
+    "passage": "A language-learning experiment compared adults who practiced a set of unfamiliar sounds in one session with adults who practiced the same total amount across several days. The groups performed similarly immediately after their final practice sessions, but the spaced-practice group performed better a month later. Assuming the groups were otherwise comparable, the results suggest that ______",
+    "prompt": "Which choice best completes the text?",
+    "options": [
+      "the distribution of practice can affect retention even when immediate performance is similar.",
+      "a single practice session prevents any long-term learning.",
+      "the spaced-practice group received more total instruction.",
+      "immediate test performance reliably predicts equal performance a month later."
+    ],
+    "answer": 0,
+    "explanation": "Equal practice amounts and immediate results, followed by different later results, indicate a retention benefit from spacing. The data do not support the absolute claim that one session prevents learning."
   },
   {
-    q:"39. If a sequence begins 5, 9, 13, 17, ... what is the 20th term?",
-    a:["77","81","85","89"], c:1,
-    e:"Arithmetic sequence with difference 4: a₂₀ = 5 + 19(4) = 81."
+    "id": "q39",
+    "m": 1,
+    "domain": "Information and Ideas",
+    "skill": "Command of evidence",
+    "level": "Hard",
+    "passage": "A scholar claims that in a fictional story, the narrator’s attention to a familiar household object reveals grief that the narrator does not directly name.",
+    "prompt": "Which quotation would most directly support the scholar’s claim?",
+    "options": [
+      "“The chair was made of oak, purchased from a shop on the northern edge of town.”",
+      "“I told everyone plainly that I was grieving and could think of nothing else.”",
+      "“The room needed new curtains, so I measured each window before leaving.”",
+      "“I set out two cups again, then returned one to the cupboard and stood for a long time with my hand on the closed door.”"
+    ],
+    "answer": 3,
+    "explanation": "The habitual second cup, its removal, and the lingering pause imply a loss without explicitly naming grief. The second choice names grief directly, contrary to the claim."
   },
   {
-    q:"40. Which equation represents a line perpendicular to y = 2x + 1?",
-    a:["y = 2x − 4","y = −2x + 3","y = (1/2)x + 5","y = −(1/2)x + 7"], c:3,
-    e:"A perpendicular line has slope equal to the negative reciprocal of 2, which is −1/2."
+    "id": "q40",
+    "m": 1,
+    "domain": "Information and Ideas",
+    "skill": "Inferences",
+    "level": "Hard",
+    "passage": "Researchers compared written accounts of a volcanic eruption with tree-ring evidence of unusually cold summers. Several accounts dated the eruption one year earlier than the strongest cooling signal. The researchers note that particles from a large eruption can take months to spread widely enough to affect climate. Thus, the one-year discrepancy ______",
+    "prompt": "Which choice best completes the text?",
+    "options": [
+      "proves that the written accounts describe a different eruption.",
+      "does not necessarily undermine a connection between the eruption and the cooling.",
+      "shows that tree rings cannot record temperature changes.",
+      "requires the conclusion that the eruption occurred after the cooling began."
+    ],
+    "answer": 1,
+    "explanation": "A delay between eruption and widespread climatic effects can explain the dates. Therefore the discrepancy alone does not rule out a connection."
   },
   {
-    q:"41. If x + y = 11 and x − y = 3, what is x?",
-    a:["4","7","8","14"], c:1,
-    e:"Add the equations: 2x = 14, so x = 7."
+    "id": "q41",
+    "m": 1,
+    "domain": "Information and Ideas",
+    "skill": "Quantitative evidence",
+    "level": "Hard",
+    "passage": "Participants remembered words presented either with related images or with unrelated images. A second task distracted some participants during learning.<table><tr><th>Condition</th><th>No distraction: words recalled</th><th>Distraction: words recalled</th></tr><tr><td>Related image</td><td>18</td><td>12</td></tr><tr><td>Unrelated image</td><td>14</td><td>11</td></tr></table>A researcher claims that related images provided a smaller recall advantage when participants were distracted.",
+    "prompt": "Which choice best supports the claim using the table?",
+    "options": [
+      "Distraction improved recall by 6 words with related images.",
+      "Unrelated images produced better recall under both conditions.",
+      "The related-image advantage fell from 4 words without distraction to 1 word with distraction.",
+      "The related-image advantage was 7 words under both conditions."
+    ],
+    "answer": 2,
+    "explanation": "The relevant comparisons are within each distraction condition: 18 − 14 = 4 and 12 − 11 = 1. Comparing 18 and 12 instead measures the effect of distraction in only one image group."
   },
   {
-    q:"42. What is the remainder when 53 is divided by 6?",
-    a:["3","4","5","6"], c:2,
-    e:"6 × 8 = 48, and 53 − 48 = 5."
+    "id": "q42",
+    "m": 1,
+    "domain": "Standard English Conventions",
+    "skill": "Subject–verb agreement",
+    "level": "Medium",
+    "passage": "Neither the age of the manuscripts nor the condition of their bindings ______ why several pages are missing.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "explains",
+      "explain",
+      "have explained",
+      "were explaining"
+    ],
+    "answer": 0,
+    "explanation": "With neither…nor, the verb agrees with the nearer subject, condition, which is singular. Bindings is inside a prepositional phrase."
   },
   {
-    q:"43. A triangle has base 14 cm and height 9 cm. What is its area?",
-    a:["46 cm²","63 cm²","126 cm²","252 cm²"], c:1,
-    e:"Area = (1/2)bh = (1/2)(14)(9) = 63 cm²."
+    "id": "q43",
+    "m": 1,
+    "domain": "Standard English Conventions",
+    "skill": "Sentence boundaries",
+    "level": "Hard",
+    "passage": "The species was once considered solitary ______ recent tracking data show that individuals sometimes travel in coordinated groups.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "however,",
+      "however;",
+      "; however",
+      "; however,"
+    ],
+    "answer": 3,
+    "explanation": "A semicolon separates independent clauses; however is followed by a comma. A comma alone before however cannot join these complete clauses."
   },
   {
-    q:"44. If log₁₀(1000) = x, what is x?",
-    a:["2","3","10","100"], c:1,
-    e:"10³ = 1000, so log₁₀(1000) = 3."
+    "id": "q44",
+    "m": 1,
+    "domain": "Standard English Conventions",
+    "skill": "Essential information",
+    "level": "Medium",
+    "passage": "Researchers studying desert plants ______ that small differences in leaf angle can substantially affect surface temperature.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "and have found",
+      "have found",
+      "having found",
+      "to find"
+    ],
+    "answer": 1,
+    "explanation": "Researchers is the subject and have found supplies the finite verb. Studying desert plants modifies the subject; the other choices leave a fragment or an unpaired conjunction."
   },
   {
-    q:"45. A machine makes 18 parts in 12 minutes. At the same rate, how many parts does it make in 50 minutes?",
-    a:["60","72","75","90"], c:2,
-    e:"Rate = 18/12 = 1.5 parts per minute. In 50 minutes: 1.5 × 50 = 75."
+    "id": "q45",
+    "m": 1,
+    "domain": "Standard English Conventions",
+    "skill": "Parallel structure",
+    "level": "Medium",
+    "passage": "The fellowship allows participants to conduct fieldwork, analyze archival records, and ______ their findings at a public symposium.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "the presentation of",
+      "presenting",
+      "present",
+      "a presentation of"
+    ],
+    "answer": 2,
+    "explanation": "Conduct, analyze, and present are parallel base-form verbs sharing to. The other choices break that structure."
   },
   {
-    q:"46. Solve: √(x + 1) = 5.",
-    a:["24","25","26","49"], c:0,
-    e:"Square both sides: x + 1 = 25, so x = 24."
+    "id": "q46",
+    "m": 1,
+    "domain": "Standard English Conventions",
+    "skill": "Nonessential elements",
+    "level": "Hard",
+    "passage": "The expedition’s lead cartographer, ______ several maps that remained in use for decades.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "Amara Bell, produced",
+      "Amara Bell produced",
+      "Amara Bell; produced",
+      "Amara Bell: produced"
+    ],
+    "answer": 0,
+    "explanation": "The name is enclosed as an appositive by paired commas. The main clause is The expedition’s lead cartographer produced several maps."
   },
   {
-    q:"47. If 3^(x+1) = 81, what is x?",
-    a:["2","3","4","5"], c:1,
-    e:"81 = 3⁴, so x + 1 = 4 and x = 3."
+    "id": "q47",
+    "m": 1,
+    "domain": "Standard English Conventions",
+    "skill": "Sentence boundaries",
+    "level": "Hard",
+    "passage": "The new method requires fewer measurements than the old one ______ advantage that makes it especially useful when samples are scarce.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "one",
+      "; an",
+      ": which is an",
+      ", an"
+    ],
+    "answer": 3,
+    "explanation": "The noun phrase an advantage… renames or comments on the preceding fact and attaches with a comma. A semicolon needs a complete independent clause after it."
   },
   {
-    q:"48. A $1,200 investment earns 5% simple interest per year. How much interest is earned in 3 years?",
-    a:["$60","$120","$180","$240"], c:2,
-    e:"Simple interest = principal × rate × time = 1200 × 0.05 × 3 = $180."
+    "id": "q48",
+    "m": 1,
+    "domain": "Standard English Conventions",
+    "skill": "Verb forms",
+    "level": "Hard",
+    "passage": "The notebooks, together with a small set of sketches, ______ the only surviving record of the designer’s early experiments.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "options": [
+      "constitutes",
+      "constitute",
+      "has constituted",
+      "is constituting"
+    ],
+    "answer": 1,
+    "explanation": "The plural subject notebooks takes constitute. The intervening together with phrase does not change the subject’s number."
   },
   {
-    q:"49. If tan θ = 1 for an acute angle θ, what is θ?",
-    a:["30°","45°","60°","90°"], c:1,
-    e:"For an acute angle, tan 45° = 1."
+    "id": "q49",
+    "m": 1,
+    "domain": "Expression of Ideas",
+    "skill": "Transitions",
+    "level": "Medium",
+    "passage": "The initial survey included only households with internet access. ______, its findings may not represent residents who could not complete an online questionnaire.",
+    "prompt": "Which choice completes the text with the most logical transition?",
+    "options": [
+      "Nevertheless",
+      "Likewise",
+      "Consequently",
+      "For example"
+    ],
+    "answer": 2,
+    "explanation": "Consequently introduces a limitation resulting from the sampling method. The second statement is an implication, not an example or contrast."
   },
   {
-    q:"50. The equation x² − 5x + 6 = 0 has which solutions?",
-    a:["1 and 6","2 and 3","−2 and −3","−1 and −6"], c:1,
-    e:"Factor: x² − 5x + 6 = (x − 2)(x − 3), so x = 2 or 3."
+    "id": "q50",
+    "m": 1,
+    "domain": "Expression of Ideas",
+    "skill": "Transitions",
+    "level": "Hard",
+    "passage": "The researcher had expected the pigment to fade rapidly in direct sunlight. After six months, however, its color had changed very little. ______, the test offered little support for her original prediction.",
+    "prompt": "Which choice completes the text with the most logical transition?",
+    "options": [
+      "Thus",
+      "Still",
+      "Meanwhile",
+      "Similarly"
+    ],
+    "answer": 0,
+    "explanation": "Thus marks the conclusion drawn from the unexpected stability. Still would imply that the conclusion contrasts with the immediately preceding evidence."
+  },
+  {
+    "id": "q51",
+    "m": 1,
+    "domain": "Expression of Ideas",
+    "skill": "Transitions",
+    "level": "Hard",
+    "passage": "The proposed transit map simplifies the network by displaying every route as a straight line. This design makes connections easy to identify. ______, it distorts distances, so travelers should not use it to estimate walking times between stations.",
+    "prompt": "Which choice completes the text with the most logical transition?",
+    "options": [
+      "Accordingly",
+      "In particular",
+      "Moreover",
+      "Nevertheless"
+    ],
+    "answer": 3,
+    "explanation": "The passage moves from a benefit to a limitation, requiring a contrast. Moreover would merely add information without signaling the tradeoff."
+  },
+  {
+    "id": "q52",
+    "m": 1,
+    "domain": "Expression of Ideas",
+    "skill": "Rhetorical synthesis",
+    "level": "Medium",
+    "passage": "A student took these notes:<ul><li>In a fictional field study, 80 seedlings were assigned randomly to two equal groups.</li><li>One group received mulch; the other did not.</li><li>Both groups received the same amount of water.</li><li>After eight weeks, 34 mulched seedlings and 25 unmulched seedlings survived.</li></ul>",
+    "prompt": "The student wants to summarize the study’s main result. Which choice most effectively uses relevant information from the notes?",
+    "options": [
+      "The study assigned 80 seedlings to two equal groups, with water held constant.",
+      "In this study, survival was higher in the mulched group: 34 of 40 seedlings survived, compared with 25 of 40 without mulch.",
+      "Mulch ensures that all seedlings survive for at least eight weeks.",
+      "The unmulched seedlings received a different amount of water than the mulched seedlings."
+    ],
+    "answer": 1,
+    "explanation": "This choice accurately compares outcomes using both counts and equal denominators. It does not overgeneralize beyond the study."
+  },
+  {
+    "id": "q53",
+    "m": 1,
+    "domain": "Expression of Ideas",
+    "skill": "Rhetorical synthesis",
+    "level": "Hard",
+    "passage": "A student took these notes:<ul><li>Scholar N. Rao studies how readers encounter serialized fiction.</li><li>Serialized novels originally appeared in installments separated by days or weeks.</li><li>Modern collected editions allow uninterrupted reading.</li><li>Rao argues that the intervals between installments encouraged readers to speculate about future events.</li></ul>",
+    "prompt": "The student wants to explain Rao’s argument to an audience already familiar with serialized fiction. Which choice most effectively uses the notes?",
+    "options": [
+      "Serialized fiction is fiction that originally appeared in installments.",
+      "N. Rao is a scholar who studies readers of novels available in collected editions.",
+      "According to Rao, reading installments as they originally appeared encouraged speculation during pauses that uninterrupted reading of a collected edition eliminates.",
+      "Collected editions contain novels that readers once encountered over days or weeks."
+    ],
+    "answer": 2,
+    "explanation": "The goal requires Rao’s interpretation of how reading experience differs. This choice identifies both the pauses and their speculative function. The others provide background without the argument."
+  },
+  {
+    "id": "q54",
+    "m": 1,
+    "domain": "Expression of Ideas",
+    "skill": "Rhetorical synthesis",
+    "level": "Hard",
+    "passage": "A student took these notes:<ul><li>A research team compared two methods of estimating the age of a wooden beam.</li><li>Tree-ring analysis suggested a date between 1620 and 1625.</li><li>A chemical method suggested a date between 1600 and 1650.</li><li>Both intervals included 1623, the year recorded in a surviving construction ledger.</li></ul>",
+    "prompt": "The student wants to emphasize agreement among the sources without overstating their precision. Which choice most effectively uses the notes?",
+    "options": [
+      "Although tree-ring analysis yielded a narrower interval, both methods produced estimates consistent with the ledger’s 1623 date.",
+      "The chemical method dated the beam more precisely than tree-ring analysis did.",
+      "Only the tree-ring estimate was consistent with the construction ledger.",
+      "Both methods established 1623 as the beam’s exact date."
+    ],
+    "answer": 0,
+    "explanation": "The intervals differ in precision but both contain 1623. Neither establishes an exact year, and the chemical interval is wider, not narrower."
+  },
+  {
+    "id": "q55",
+    "m": 2,
+    "domain": "Algebra",
+    "skill": "Linear equations",
+    "level": "Easy",
+    "passage": "",
+    "prompt": "If 5x − 7 = 28, what is the value of x?",
+    "options": [
+      "4.2",
+      "5",
+      "7",
+      "21"
+    ],
+    "answer": 2,
+    "explanation": "Add 7 to both sides to get 5x = 35, then divide by 5: x = 7."
+  },
+  {
+    "id": "q56",
+    "m": 2,
+    "domain": "Algebra",
+    "skill": "Linear functions",
+    "level": "Easy",
+    "passage": "",
+    "prompt": "A delivery service charges a fixed fee of $8 plus $3 per kilometer. Which function gives the total charge C, in dollars, for a delivery of k kilometers?",
+    "options": [
+      "C(k) = 8k + 3",
+      "C(k) = 3k + 8",
+      "C(k) = 11k",
+      "C(k) = 3(k + 8)"
+    ],
+    "answer": 1,
+    "explanation": "The per-kilometer rate is the coefficient of k; the fixed fee is added once. Thus C(k) = 3k + 8."
+  },
+  {
+    "id": "q57",
+    "m": 2,
+    "domain": "Problem-Solving and Data Analysis",
+    "skill": "Percentages",
+    "level": "Easy",
+    "passage": "",
+    "prompt": "A jacket originally costs $80. Its price is reduced by 15%. What is the sale price, in dollars?",
+    "options": null,
+    "answer": 68,
+    "explanation": "The discount is 0.15 × 80 = 12 dollars. The sale price is 80 − 12 = 68 dollars."
+  },
+  {
+    "id": "q58",
+    "m": 2,
+    "domain": "Algebra",
+    "skill": "Linear equations in two variables",
+    "level": "Easy",
+    "passage": "",
+    "prompt": "A line passes through (2, 5) and (6, 13). What is its slope?",
+    "options": [
+      "1/2",
+      "2",
+      "4",
+      "8"
+    ],
+    "answer": 1,
+    "explanation": "Slope is change in y divided by change in x: (13 − 5)/(6 − 2) = 8/4 = 2."
+  },
+  {
+    "id": "q59",
+    "m": 2,
+    "domain": "Advanced Math",
+    "skill": "Equivalent expressions",
+    "level": "Easy",
+    "passage": "",
+    "prompt": "Which expression is equivalent to (x + 4)(x − 3)?",
+    "options": [
+      "x² + x − 12",
+      "x² − x − 12",
+      "x² + 7x − 12",
+      "x² + x + 12"
+    ],
+    "answer": 0,
+    "explanation": "Expand: x² − 3x + 4x − 12 = x² + x − 12. The middle terms combine to +x."
+  },
+  {
+    "id": "q60",
+    "m": 2,
+    "domain": "Geometry and Trigonometry",
+    "skill": "Circles",
+    "level": "Easy",
+    "passage": "",
+    "prompt": "A circle has a radius of 6. What is its area?",
+    "options": [
+      "6π",
+      "12π",
+      "24π",
+      "36π"
+    ],
+    "answer": 3,
+    "explanation": "Area is πr² = π(6²) = 36π. The value 12π is the circumference, not the area."
+  },
+  {
+    "id": "q61",
+    "m": 2,
+    "domain": "Algebra",
+    "skill": "Systems of linear equations",
+    "level": "Medium",
+    "passage": "",
+    "prompt": "The system of equations is x + y = 11 and 2x − y = 4. What is the value of x?",
+    "options": null,
+    "answer": 5,
+    "explanation": "Add the equations to eliminate y: 3x = 15. Therefore x = 5; y = 6."
+  },
+  {
+    "id": "q62",
+    "m": 2,
+    "domain": "Advanced Math",
+    "skill": "Quadratic equations",
+    "level": "Medium",
+    "passage": "",
+    "prompt": "If x² − 7x + 10 = 0, what is the greater solution?",
+    "options": [
+      "2",
+      "5",
+      "7",
+      "10"
+    ],
+    "answer": 1,
+    "explanation": "Factor as (x − 2)(x − 5) = 0. The solutions are 2 and 5; the greater is 5."
+  },
+  {
+    "id": "q63",
+    "m": 2,
+    "domain": "Problem-Solving and Data Analysis",
+    "skill": "Conditional probability",
+    "level": "Medium",
+    "passage": "",
+    "prompt": "A school surveyed 100 students.<table><tr><th></th><th>Bus</th><th>Other transport</th></tr><tr><td>Grade 11</td><td>18</td><td>22</td></tr><tr><td>Grade 12</td><td>42</td><td>18</td></tr></table>If a student who takes the bus is selected at random, what is the probability that the student is in grade 12?",
+    "options": [
+      "0.42",
+      "0.60",
+      "0.70",
+      "0.80"
+    ],
+    "answer": 2,
+    "explanation": "Restrict the denominator to bus riders: 18 + 42 = 60. The probability is 42/60 = 0.70; 0.42 incorrectly uses all students."
+  },
+  {
+    "id": "q64",
+    "m": 2,
+    "domain": "Algebra",
+    "skill": "Linear inequalities",
+    "level": "Medium",
+    "passage": "",
+    "prompt": "A club has $250 to rent a room and buy tickets. The room costs $70, and each ticket costs $12. What is the greatest number of tickets the club can buy?",
+    "options": null,
+    "answer": 15,
+    "explanation": "Solve 70 + 12t ≤ 250. Then 12t ≤ 180 and t ≤ 15, so the maximum whole number is 15."
+  },
+  {
+    "id": "q65",
+    "m": 2,
+    "domain": "Advanced Math",
+    "skill": "Exponential functions",
+    "level": "Medium",
+    "passage": "",
+    "prompt": "The function P(t) = 600(1.04)ᵗ models a population t years after a survey. Which statement best describes the model?",
+    "options": [
+      "The population increases by 4 individuals per year.",
+      "The population increases by 24 individuals every year.",
+      "The initial population is 624.",
+      "The population increases by 4% each year."
+    ],
+    "answer": 3,
+    "explanation": "A factor of 1.04 per year means 104% of the previous year’s population, or a 4% increase. The number added is not constant."
+  },
+  {
+    "id": "q66",
+    "m": 2,
+    "domain": "Geometry and Trigonometry",
+    "skill": "Right triangles",
+    "level": "Medium",
+    "passage": "",
+    "prompt": "In a right triangle, an acute angle θ has an opposite side of length 9 and a hypotenuse of length 15. What is sin θ?",
+    "options": [
+      "3/5",
+      "4/5",
+      "3/4",
+      "5/3"
+    ],
+    "answer": 0,
+    "explanation": "Sine is opposite/hypotenuse = 9/15 = 3/5. The remaining leg is 12, but it is not needed to calculate sine."
+  },
+  {
+    "id": "q67",
+    "m": 2,
+    "domain": "Algebra",
+    "skill": "Linear functions",
+    "level": "Medium",
+    "passage": "",
+    "prompt": "The function f is linear. If f(3) = 11 and f(7) = 19, what is f(0)?",
+    "options": null,
+    "answer": 5,
+    "explanation": "The slope is (19 − 11)/(7 − 3) = 2. Using 11 = 2(3) + b gives b = 5, so f(0) = 5."
+  },
+  {
+    "id": "q68",
+    "m": 2,
+    "domain": "Advanced Math",
+    "skill": "Quadratic functions",
+    "level": "Medium",
+    "passage": "",
+    "prompt": "For the function f(x) = (x − 4)² − 9, what is the minimum value of f(x)?",
+    "options": [
+      "−9",
+      "−4",
+      "4",
+      "9"
+    ],
+    "answer": 0,
+    "explanation": "A square is at least zero. It equals zero at x = 4, so the minimum output is −9. The x-coordinate of the vertex is not the minimum value."
+  },
+  {
+    "id": "q69",
+    "m": 2,
+    "domain": "Geometry and Trigonometry",
+    "skill": "Similarity",
+    "level": "Medium",
+    "passage": "",
+    "prompt": "Two similar triangles have corresponding side lengths in the ratio 3:5. The smaller triangle has an area of 27. What is the area of the larger triangle?",
+    "options": [
+      "45",
+      "60",
+      "75",
+      "125"
+    ],
+    "answer": 2,
+    "explanation": "Areas scale by the square of the side ratio: 27 × (5/3)² = 27 × 25/9 = 75."
+  },
+  {
+    "id": "q70",
+    "m": 2,
+    "domain": "Advanced Math",
+    "skill": "Rational expressions",
+    "level": "Medium",
+    "passage": "",
+    "prompt": "For x ≠ 3, which expression is equivalent to (x² − 9)/(x − 3)?",
+    "options": [
+      "x − 3",
+      "x + 3",
+      "x² + 3",
+      "1"
+    ],
+    "answer": 1,
+    "explanation": "Factor x² − 9 as (x − 3)(x + 3), then cancel the nonzero factor x − 3. The restriction x ≠ 3 remains."
+  },
+  {
+    "id": "q71",
+    "m": 2,
+    "domain": "Algebra",
+    "skill": "Systems and parameters",
+    "level": "Hard",
+    "passage": "",
+    "prompt": "For what value of k does the system 3x + 2y = 7 and 6x + ky = 15 have no solution?",
+    "options": null,
+    "answer": 4,
+    "explanation": "The coefficients must be proportional but constants not proportional. Doubling the first left side gives 6x + 4y, but doubling its constant gives 14, not 15. Thus k = 4 gives parallel distinct lines."
+  },
+  {
+    "id": "q72",
+    "m": 2,
+    "domain": "Problem-Solving and Data Analysis",
+    "skill": "Study design",
+    "level": "Medium",
+    "passage": "",
+    "prompt": "A researcher randomly selects 200 adults from a city and asks about their weekly exercise and sleep. Adults who exercise more report longer sleep. Which conclusion is best supported?",
+    "options": [
+      "Increasing exercise necessarily causes longer sleep.",
+      "Every adult who exercises sleeps longer than every adult who does not.",
+      "The results can be generalized to all adults in the country.",
+      "For adults in the city, exercise and reported sleep duration appear to be associated."
+    ],
+    "answer": 3,
+    "explanation": "Random sampling supports generalizing an association to the city population. Without random assignment to treatments, the observational study does not establish causation."
+  },
+  {
+    "id": "q73",
+    "m": 2,
+    "domain": "Advanced Math",
+    "skill": "Radical equations",
+    "level": "Hard",
+    "passage": "",
+    "prompt": "What is the solution to √(x + 6) = x?",
+    "options": null,
+    "answer": 3,
+    "explanation": "Because a square root is nonnegative, x ≥ 0. Squaring gives x + 6 = x², or (x − 3)(x + 2) = 0. Only x = 3 satisfies the original equation; −2 is extraneous."
+  },
+  {
+    "id": "q74",
+    "m": 2,
+    "domain": "Geometry and Trigonometry",
+    "skill": "Circle equations",
+    "level": "Hard",
+    "passage": "",
+    "prompt": "The equation x² + y² − 6x + 8y = 0 represents a circle. What is its radius?",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "25"
+    ],
+    "answer": 2,
+    "explanation": "Complete squares: (x − 3)² + (y + 4)² = 9 + 16 = 25. The radius is √25 = 5, not 25."
+  },
+  {
+    "id": "q75",
+    "m": 2,
+    "domain": "Algebra",
+    "skill": "Linear equations and structure",
+    "level": "Hard",
+    "passage": "",
+    "prompt": "If 4(2x − 3) = 3(2x − 3) + 11, what is the value of 2x − 3?",
+    "options": null,
+    "answer": 11,
+    "explanation": "Let u = 2x − 3. Then 4u = 3u + 11, so u = 11. The question asks for the expression, not x, which is 7."
+  },
+  {
+    "id": "q76",
+    "m": 2,
+    "domain": "Advanced Math",
+    "skill": "Quadratic parameters",
+    "level": "Hard",
+    "passage": "",
+    "prompt": "The quadratic equation x² − 10x + c = 0 has exactly one distinct real solution. What is the value of c?",
+    "options": [
+      "5",
+      "10",
+      "20",
+      "25"
+    ],
+    "answer": 3,
+    "explanation": "Exactly one real solution requires a zero discriminant: (−10)² − 4c = 0. Thus c = 25, giving (x − 5)² = 0."
+  },
+  {
+    "id": "q77",
+    "m": 3,
+    "domain": "Algebra",
+    "skill": "Linear equations",
+    "level": "Easy",
+    "passage": "",
+    "prompt": "If 7 − 2x = 19, what is x?",
+    "options": [
+      "−13",
+      "−6",
+      "6",
+      "13"
+    ],
+    "answer": 1,
+    "explanation": "Subtract 7: −2x = 12. Divide by −2 to get x = −6."
+  },
+  {
+    "id": "q78",
+    "m": 3,
+    "domain": "Problem-Solving and Data Analysis",
+    "skill": "Ratios and units",
+    "level": "Medium",
+    "passage": "",
+    "prompt": "A machine fills 180 containers in 12 minutes at a constant rate. At that rate, how many containers does it fill in 50 minutes?",
+    "options": null,
+    "answer": 750,
+    "explanation": "The rate is 180/12 = 15 containers per minute. Over 50 minutes it fills 15 × 50 = 750 containers."
+  },
+  {
+    "id": "q79",
+    "m": 3,
+    "domain": "Algebra",
+    "skill": "Interpreting linear models",
+    "level": "Medium",
+    "passage": "",
+    "prompt": "The function h(t) = 48 − 3t models the depth, in centimeters, of water in a tank t minutes after draining begins. What does 3 represent in this model?",
+    "options": [
+      "The initial depth of the water",
+      "The number of minutes needed to empty the tank",
+      "The decrease in water depth, in centimeters, each minute",
+      "The water depth after one minute"
+    ],
+    "answer": 2,
+    "explanation": "The coefficient −3 is the slope, so depth decreases by 3 centimeters per minute. The initial depth is 48 cm."
+  },
+  {
+    "id": "q80",
+    "m": 3,
+    "domain": "Advanced Math",
+    "skill": "Nonlinear equations",
+    "level": "Medium",
+    "passage": "",
+    "prompt": "What is the positive solution of 2x² = 98?",
+    "options": [
+      "7",
+      "14",
+      "49",
+      "96"
+    ],
+    "answer": 0,
+    "explanation": "Divide by 2 to get x² = 49. The roots are ±7; the positive solution is 7."
+  },
+  {
+    "id": "q81",
+    "m": 3,
+    "domain": "Algebra",
+    "skill": "Systems of equations",
+    "level": "Medium",
+    "passage": "",
+    "prompt": "At a concert, adult tickets cost $12 and student tickets cost $8. A total of 40 tickets generated $400. How many adult tickets were sold?",
+    "options": null,
+    "answer": 20,
+    "explanation": "Let a be adult tickets. Then 12a + 8(40 − a) = 400, so 4a + 320 = 400 and a = 20."
+  },
+  {
+    "id": "q82",
+    "m": 3,
+    "domain": "Geometry and Trigonometry",
+    "skill": "Volume",
+    "level": "Medium",
+    "passage": "",
+    "prompt": "A right circular cylinder has radius 3 and height 10. What is its volume?",
+    "options": [
+      "30π",
+      "60π",
+      "90π",
+      "900π"
+    ],
+    "answer": 2,
+    "explanation": "Cylinder volume is πr²h = π × 3² × 10 = 90π."
+  },
+  {
+    "id": "q83",
+    "m": 3,
+    "domain": "Advanced Math",
+    "skill": "Equivalent expressions",
+    "level": "Medium",
+    "passage": "",
+    "prompt": "For positive x, which expression is equivalent to x^(3/2) · x^(−1/2)?",
+    "options": [
+      "1",
+      "√x",
+      "x²",
+      "x"
+    ],
+    "answer": 3,
+    "explanation": "When multiplying powers of the same base, add exponents: 3/2 + (−1/2) = 1. The result is x¹ = x."
+  },
+  {
+    "id": "q84",
+    "m": 3,
+    "domain": "Problem-Solving and Data Analysis",
+    "skill": "Mean and transformations",
+    "level": "Medium",
+    "passage": "",
+    "prompt": "Data set B is created by adding 6 to every value in data set A. Compared with data set A, which statement about data set B is true?",
+    "options": [
+      "Its mean and standard deviation both increase by 6.",
+      "Its mean increases by 6, and its standard deviation is unchanged.",
+      "Its mean is unchanged, and its standard deviation increases by 6.",
+      "Its mean and standard deviation are both unchanged."
+    ],
+    "answer": 1,
+    "explanation": "Adding a constant shifts the center by that constant but preserves all distances from the mean, so standard deviation is unchanged."
+  },
+  {
+    "id": "q85",
+    "m": 3,
+    "domain": "Algebra",
+    "skill": "Linear inequalities",
+    "level": "Medium",
+    "passage": "",
+    "prompt": "Which inequality is equivalent to 5 − 3x > 17?",
+    "options": [
+      "x < −4",
+      "x > −4",
+      "x < 4",
+      "x > 4"
+    ],
+    "answer": 0,
+    "explanation": "Subtract 5: −3x > 12. Dividing by a negative number reverses the inequality, giving x < −4."
+  },
+  {
+    "id": "q86",
+    "m": 3,
+    "domain": "Advanced Math",
+    "skill": "Exponential functions",
+    "level": "Medium",
+    "passage": "",
+    "prompt": "The value of an investment is modeled by V(t) = 900(1.08)^(t/2), where t is measured in years. By what percentage does the model predict the value will increase over any two-year period?",
+    "options": [
+      "4%",
+      "8%",
+      "16%",
+      "108%"
+    ],
+    "answer": 1,
+    "explanation": "Increasing t by 2 increases the exponent by 1. The value is multiplied by 1.08, an 8% increase, over two years."
+  },
+  {
+    "id": "q87",
+    "m": 3,
+    "domain": "Geometry and Trigonometry",
+    "skill": "Special right triangles",
+    "level": "Hard",
+    "passage": "",
+    "prompt": "In right triangle ABC, angle C is 90°, angle A is 30°, and AB = 18. What is the length of BC?",
+    "options": null,
+    "answer": 9,
+    "explanation": "AB is the hypotenuse, and BC is opposite the 30° angle. In a 30–60–90 triangle, that leg is half the hypotenuse: 18/2 = 9."
+  },
+  {
+    "id": "q88",
+    "m": 3,
+    "domain": "Algebra",
+    "skill": "Parallel lines",
+    "level": "Hard",
+    "passage": "",
+    "prompt": "Line ℓ has equation 4x + 5y = 20. Line m is parallel to ℓ and passes through (5, 2). What is the y-intercept of line m?",
+    "options": null,
+    "answer": 6,
+    "explanation": "The slope of ℓ is −4/5. For line m, 2 = (−4/5)(5) + b, so b = 6."
+  },
+  {
+    "id": "q89",
+    "m": 3,
+    "domain": "Advanced Math",
+    "skill": "Nonlinear systems",
+    "level": "Hard",
+    "passage": "",
+    "prompt": "The graphs of y = x² − 6x + 11 and y = 2x − 1 intersect at two points. What is the sum of the x-coordinates of those points?",
+    "options": [
+      "6",
+      "8",
+      "11",
+      "12"
+    ],
+    "answer": 1,
+    "explanation": "Set the expressions equal: x² − 8x + 12 = 0. The roots are 2 and 6, whose sum is 8. Equivalently, the sum is −b/a = 8."
+  },
+  {
+    "id": "q90",
+    "m": 3,
+    "domain": "Problem-Solving and Data Analysis",
+    "skill": "Successive percentages",
+    "level": "Hard",
+    "passage": "",
+    "prompt": "The price of an item increases by 20% and then decreases by 20% of the increased price. The final price is $192. What was the original price, in dollars?",
+    "options": null,
+    "answer": 200,
+    "explanation": "The net multiplier is 1.20 × 0.80 = 0.96. Thus 0.96p = 192 and p = 200. Equal percentage increases and decreases do not cancel."
+  },
+  {
+    "id": "q91",
+    "m": 3,
+    "domain": "Algebra",
+    "skill": "Linear parameters",
+    "level": "Hard",
+    "passage": "",
+    "prompt": "For constants a and b, the equation a(x − 2) = 3x + b is true for every real value of x. What is b?",
+    "options": [
+      "−6",
+      "−2",
+      "3",
+      "6"
+    ],
+    "answer": 0,
+    "explanation": "Expand to ax − 2a = 3x + b. Matching coefficients gives a = 3 and b = −2a = −6."
+  },
+  {
+    "id": "q92",
+    "m": 3,
+    "domain": "Advanced Math",
+    "skill": "Rational equations",
+    "level": "Hard",
+    "passage": "",
+    "prompt": "For x ≠ 2, the equation (x + 1)/(x − 2) = 4 has what solution?",
+    "options": null,
+    "answer": 3,
+    "explanation": "Multiply by x − 2: x + 1 = 4x − 8. Thus 9 = 3x and x = 3, which is allowed because it is not 2."
+  },
+  {
+    "id": "q93",
+    "m": 3,
+    "domain": "Problem-Solving and Data Analysis",
+    "skill": "Mean and unknown values",
+    "level": "Hard",
+    "passage": "",
+    "prompt": "A set of 8 numbers has a mean of 15. When two numbers are removed, the remaining 6 numbers have a mean of 12. If one removed number is 20, what is the other removed number?",
+    "options": null,
+    "answer": 28,
+    "explanation": "The original sum is 8 × 15 = 120. The remaining sum is 6 × 12 = 72, so the removed numbers total 48. The other is 48 − 20 = 28."
+  },
+  {
+    "id": "q94",
+    "m": 3,
+    "domain": "Advanced Math",
+    "skill": "Quadratic transformations",
+    "level": "Hard",
+    "passage": "",
+    "prompt": "The function f(x) = x² + bx + 16 has its minimum value at x = 3. What is the minimum value of f?",
+    "options": [
+      "−6",
+      "3",
+      "7",
+      "16"
+    ],
+    "answer": 2,
+    "explanation": "The vertex has x-coordinate −b/2 = 3, so b = −6. Then f(3) = 9 − 18 + 16 = 7. Equivalently f(x) = (x − 3)² + 7."
+  },
+  {
+    "id": "q95",
+    "m": 3,
+    "domain": "Geometry and Trigonometry",
+    "skill": "Circles and arcs",
+    "level": "Hard",
+    "passage": "",
+    "prompt": "An arc of a circle has length 8π and corresponds to a central angle of 120°. What is the radius of the circle?",
+    "options": [
+      "4",
+      "8",
+      "12",
+      "24"
+    ],
+    "answer": 2,
+    "explanation": "The arc is 120/360 = 1/3 of the circumference. Thus (1/3)(2πr) = 8π, giving r = 12."
+  },
+  {
+    "id": "q96",
+    "m": 3,
+    "domain": "Algebra",
+    "skill": "Systems and parameters",
+    "level": "Hard",
+    "passage": "",
+    "prompt": "The system 2x + 3y = 7 and 4x + 6y = kx + 14 has exactly one solution. Which condition on k is necessary and sufficient?",
+    "options": [
+      "k = 0",
+      "k = 2",
+      "k = 4",
+      "k ≠ 0"
+    ],
+    "answer": 3,
+    "explanation": "Subtract twice the first equation from the second to obtain 0 = kx. If k ≠ 0, x = 0 and y = 7/3 uniquely. If k = 0, the equations are identical and have infinitely many solutions."
+  },
+  {
+    "id": "q97",
+    "m": 3,
+    "domain": "Advanced Math",
+    "skill": "Polynomial structure",
+    "level": "Hard",
+    "passage": "",
+    "prompt": "The polynomial P(x) = x³ + ax² + bx − 12 is divisible by both x − 2 and x + 3. What is the value of a + b?",
+    "options": null,
+    "answer": -1,
+    "explanation": "The third factor is x − r. The constant in (x − 2)(x + 3)(x − r) is 6r, so r = −2. Expanding (x − 2)(x + 3)(x + 2) gives x³ + 3x² − 4x − 12. Hence a + b = 3 − 4 = −1."
+  },
+  {
+    "id": "q98",
+    "m": 3,
+    "domain": "Advanced Math",
+    "skill": "Quadratic parameters",
+    "level": "Hard",
+    "passage": "",
+    "prompt": "Which of the following positive values of k makes the equation x² − (k + 2)x + 4k = 0 have exactly one distinct real solution?",
+    "options": [
+      "2",
+      "4",
+      "6",
+      "6 + 4√2"
+    ],
+    "answer": 3,
+    "explanation": "Set the discriminant to zero: (k + 2)² − 16k = k² − 12k + 4 = 0. This gives k = 6 ± 4√2. Both values are positive; among the listed choices only 6 + 4√2 qualifies. Do not assume that a positive parameter must be an integer."
   }
 ];
-
-const form = document.getElementById("quizForm");
-
-questions.forEach((item, i) => {
-  const block = document.createElement("section");
-  block.className = "question";
-  block.id = "q" + i;
-
-  const title = document.createElement("h3");
-  title.textContent = item.q;
-  block.appendChild(title);
-
-  item.a.forEach((choice, j) => {
-    const label = document.createElement("label");
-    label.className = "option";
-
-    const input = document.createElement("input");
-    input.type = "radio";
-    input.name = "q" + i;
-    input.value = j;
-
-    label.appendChild(input);
-    label.appendChild(document.createTextNode(choice));
-    block.appendChild(label);
-  });
-
-  const exp = document.createElement("div");
-  exp.className = "explanation";
-  exp.id = "exp" + i;
-  block.appendChild(exp);
-
-  form.appendChild(block);
-});
-
-document.getElementById("gradeBtn").addEventListener("click", () => {
-  let score = 0;
-  let answered = 0;
-
-  questions.forEach((item, i) => {
-    const block = document.getElementById("q" + i);
-    const selected = document.querySelector(`input[name="q${i}"]:checked`);
-    const exp = document.getElementById("exp" + i);
-
-    block.classList.remove("correct", "incorrect");
-    exp.classList.add("show");
-
-    if (selected) {
-      answered++;
-      const chosen = Number(selected.value);
-      if (chosen === item.c) {
-        score++;
-        block.classList.add("correct");
-        exp.textContent = "Correct. " + item.e;
-      } else {
-        block.classList.add("incorrect");
-        exp.textContent = `Not quite. Correct answer: ${item.a[item.c]}. ${item.e}`;
-      }
-    } else {
-      block.classList.add("incorrect");
-      exp.textContent = `Unanswered. Correct answer: ${item.a[item.c]}. ${item.e}`;
-    }
-  });
-
-  const pct = Math.round((score / questions.length) * 100);
-  const result = document.getElementById("result");
-  result.style.display = "block";
-  result.innerHTML = `
-    <div class="score">Score: ${score} / ${questions.length} (${pct}%)</div>
-    <div class="small">Answered: ${answered} / ${questions.length}</div>
-  `;
-  result.scrollIntoView({behavior:"smooth", block:"center"});
-});
-
-document.getElementById("resetBtn").addEventListener("click", () => {
-  form.reset();
-  document.querySelectorAll(".question").forEach(el => el.classList.remove("correct","incorrect"));
-  document.querySelectorAll(".explanation").forEach(el => {
-    el.classList.remove("show");
-    el.textContent = "";
-  });
-  document.getElementById("result").style.display = "none";
-  window.scrollTo({top:0, behavior:"smooth"});
-});
-</script>
-</body>
-</html>
+const MODULES=[{name:'Reading and Writing',num:1,minutes:32},{name:'Reading and Writing',num:2,minutes:32},{name:'Math',num:1,minutes:35},{name:'Math',num:2,minutes:35}];
+const KEY='sat-practice-studio-v1';
+let state=null,saveError=false,hiddenTimer=false,eliminate=false,lastTick=Date.now(),reviewFilter='missed',reviewDomain='all';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const list=m=>QUESTIONS.filter(q=>q.m===m);
+const current=()=>list(state.modules[state.mi])[state.qi];
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));saveError=false}catch(e){saveError=true}}
+try{state=JSON.parse(localStorage.getItem(KEY));if(state&&state.version!==1)state=null}catch(e){}
+function answered(q){return state.answers[q.id]!==undefined&&String(state.answers[q.id]).trim()!==''}
+function numeric(v){const s=String(v).trim().replace(/−/g,'-');if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:\/[+-]?(?:\d+(?:\.\d*)?|\.\d+))?$/.test(s))return NaN;const p=s.split('/').map(Number);return p.length===2?p[0]/p[1]:p[0]}
+function correct(q){if(!answered(q))return false;return q.options?state.answers[q.id]===q.answer:Math.abs(numeric(state.answers[q.id])-q.answer)<.00001}
+function fmt(sec){sec=Math.max(0,Math.ceil(sec));return Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0')}
+function activeQuestions(){return QUESTIONS.filter(q=>state.modules.includes(q.m))}
+function start(){if(state&&!confirm('Start a new attempt? This replaces the saved attempt on this browser.'))return;const scope=$('scope').value;state={version:1,phase:'test',modules:scope==='rw'?[0,1]:scope==='math'?[2,3]:[0,1,2,3],mi:0,qi:0,mode:$('mode').value,answers:{},flags:{},crossed:{},times:{},completed:[],started:Date.now(),deadline:0,breakEnd:0};startModule(Date.now());save();render()}
+function startModule(at){state.phase='test';state.qi=0;state.deadline=at+MODULES[state.modules[state.mi]].minutes*60000;lastTick=Date.now();hiddenTimer=false;eliminate=false}
+function chargeTime(){if(!state||state.phase!=='test'){lastTick=Date.now();return}const now=Date.now(),end=state.mode==='timed'?Math.min(now,state.deadline):now;const seconds=Math.max(0,(end-lastTick)/1000);const id=current().id;state.times[id]=(state.times[id]||0)+seconds;lastTick=now}
+function advance(at){state.completed.push(state.modules[state.mi]);const old=state.modules[state.mi];state.mi++;if(state.mi>=state.modules.length){state.phase='results';state.finished=Date.now()}else if(old===1&&state.modules[state.mi]===2){state.phase='break';state.breakEnd=at+600000}else startModule(at);closeModal();save();render()}
+function tick(){if(!state)return;chargeTime();let changed=false;for(let i=0;i<6;i++){if(state.phase==='test'&&state.mode==='timed'&&Date.now()>=state.deadline){advance(state.deadline);changed=true;continue}if(state.phase==='break'&&Date.now()>=state.breakEnd){startModule(state.breakEnd);changed=true;continue}break}if(changed){save();render()}if($('timer-value')){const remain=(state.deadline-Date.now())/1000;$('timer-value').textContent=hiddenTimer?'Time hidden':state.mode==='timed'?fmt(remain):'Untimed';$('timer-value').className=remain<=300&&state.mode==='timed'?'warning':''}if($('break-value'))$('break-value').textContent=fmt((state.breakEnd-Date.now())/1000);if(Math.floor(Date.now()/1000)%5===0)save()}
+function resume(){lastTick=Date.now();tick();render()}
+function landing(){const saved=state;return `<div class="landing"><nav><span class="brand">SAT PRACTICE STUDIO</span><span class="badge">Original practice · Form 01</span></nav><div class="wrap"><div class="eyebrow">A full-length rehearsal</div><h1>Get comfortable with<br>test day.</h1><p class="intro">Work through original SAT-style questions in a focused digital test environment. Review your results and the reasoning behind every answer when you finish.</p><div class="setup"><section class="card"><h2>Your practice test</h2><div class="spec"><div><b>98</b><span>questions</span></div><div><b>134</b><span>minutes of testing</span></div><div><b>4</b><span>timed modules</span></div></div><ol class="module-list"><li>Reading and Writing · 27 questions · 32 minutes</li><li>Reading and Writing · 27 questions · 32 minutes</li><li>10-minute break</li><li>Math · 22 questions · 35 minutes</li><li>Math · 22 questions · 35 minutes</li></ol><p class="small">Use scratch paper. A calculator is allowed throughout Math. A basic scientific calculator and reference sheet are included; a link to Desmos opens its graphing calculator in a separate tab (internet required). You may use your own calculator.</p><div class="banner"><b>About realism:</b> This is independent, original practice—not an official College Board test. The timing, question counts, skill mix, and workspace follow the digital SAT format. Difficulty is author-estimated, not empirically calibrated. Both second modules are fixed and challenging, not adaptive. Results show accuracy, not a scaled SAT score.</div></section><section class="card"><h2>Set up your attempt</h2><label class="field">Test selection<select id="scope"><option value="full">Full test · 98 questions</option><option value="rw">Reading and Writing · 54 questions</option><option value="math">Math · 44 questions</option></select></label><label class="field">Timing<select id="mode"><option value="timed">Test simulation · strict module timers</option><option value="untimed">Untimed practice · same questions</option></select></label><button class="primary" onclick="start()" style="width:100%">${saved?'Start a new attempt':'Begin test'}</button>${saved?`<button onclick="resume()" style="width:100%;margin-top:12px">${saved.phase==='results'?'View saved results':'Resume saved attempt'}</button>`:''}<p class="small">Answers save automatically in this browser when storage is available. A timed attempt keeps running if you close or leave the page. Completed modules cannot be reopened until final review.</p><p class="small">Feedback stays hidden until you complete your selected test. For the most useful result, work independently and do not look up answers.</p></section></div><div class="sources small">Format references: <a target="_blank" rel="noopener" href="https://satsuite.collegeboard.org/sat/whats-on-the-test/structure">College Board test structure</a> · <a target="_blank" rel="noopener" href="https://satsuite.collegeboard.org/k12-educators/about/alignment/math">Math specifications</a> · <a target="_blank" rel="noopener" href="https://satsuite.collegeboard.org/k12-educators/about/alignment/reading">Reading and Writing specifications</a>.<br>For an official adaptive rehearsal and score estimate, use <a href="https://satsuite.collegeboard.org/practice/practice-tests/bluebook" target="_blank" rel="noopener">Bluebook practice tests</a>. All passages, studies, names, and data in this practice form are constructed for these questions unless otherwise stated.</div></div></div>`}
+function render(){if(!state){$('app').innerHTML=landing();return}if(state.phase==='test')renderTest();else if(state.phase==='break')renderBreak();else renderResults()}
+function renderTest(){const m=state.modules[state.mi],mod=MODULES[m],q=current(),qs=list(m),a=state.answers[q.id];$('app').innerHTML=`<header class="exam-header"><div><div class="exam-title">${mod.name}: Module ${mod.num}</div><button class="quiet" style="font-size:13px;padding:8px 0" onclick="directions()">Directions ▾</button></div><div class="timer"><b id="timer-value">${state.mode==='timed'?fmt((state.deadline-Date.now())/1000):'Untimed'}</b>${state.mode==='timed'?`<button onclick="toggleTimer()">${hiddenTimer?'Show':'Hide'} timer</button>`:''}</div><div class="header-tools">${m>=2?`<div class="tools-wrap"><button onclick="calculator()">Calculator</button><button onclick="reference()">Reference</button></div>`:''}<button class="quiet" onclick="moreMenu()" aria-label="More options">More ▾</button></div></header><div class="test-body ${m>=2?'math-body':''}">${m<2?`<article class="passage" aria-label="Reading passage">${q.passage}</article>`:''}<section class="question" aria-label="Question"><div class="qbar"><span class="qnumber">${state.qi+1}</span><button class="flag ${state.flags[q.id]?'on':''}" aria-pressed="${!!state.flags[q.id]}" onclick="toggleFlag()">⚑ ${state.flags[q.id]?'Marked for Review':'Mark for Review'}</button>${q.options?`<button class="eliminate-toggle" aria-pressed="${eliminate}" onclick="toggleEliminate()">${eliminate?'Hide':'Show'} answer elimination</button>`:''}</div><div class="prompt">${q.prompt}</div>${q.options?q.options.map((o,i)=>`<div class="option-row"><button class="choice ${a===i?'selected':''} ${state.crossed[q.id+'-'+i]?'eliminated':''}" aria-pressed="${a===i}" onclick="choose(${i})"><span class="letter">${'ABCD'[i]}</span><span>${o}</span></button>${eliminate?`<button class="cross" aria-label="${state.crossed[q.id+'-'+i]?'Restore':'Eliminate'} answer ${'ABCD'[i]}" onclick="cross(${i})">${state.crossed[q.id+'-'+i]?'↶':'⊘'}</button>`:''}</div>`).join(''):`<label for="numeric-answer" class="small">Enter your answer</label><p style="margin:8px 0"><input class="answer-input" id="numeric-answer" autocomplete="off" spellcheck="false" aria-describedby="input-help" value="${esc(a??'')}" oninput="setNumeric(this.value)"></p><p id="input-help" class="small">Enter a number, decimal, or fraction. Do not include units, commas, or an equation.</p><div id="input-status" class="status" role="status"></div>`}<button class="quiet small" onclick="clearAnswer()" style="margin-top:8px">Clear answer</button></section></div><footer class="footer"><span class="autosave">${saveError?'Storage unavailable. Keep this tab open.':'Your progress is saved in this browser.'}</span><button class="navigator" onclick="navigatorDialog()">Question ${state.qi+1} of ${qs.length} ▴</button><div class="navbuttons"><button onclick="move(-1)" ${state.qi===0?'disabled':''}>Back</button><button class="primary" onclick="${state.qi===qs.length-1?'submitDialog()':'move(1)'}">${state.qi===qs.length-1?'Finish module':'Next'}</button></div></footer>`;if(hiddenTimer&&$('timer-value'))$('timer-value').textContent='Time hidden'}
+function choose(i){chargeTime();state.answers[current().id]=i;delete state.crossed[current().id+'-'+i];save();renderTest()}
+function setNumeric(v){state.answers[current().id]=v.trim();save();const valid=!v.trim()||Number.isFinite(numeric(v));$('input-status').textContent=valid?'':'Use a number or a fraction such as 3/4.';$('numeric-answer').setAttribute('aria-invalid',String(!valid))}
+function clearAnswer(){delete state.answers[current().id];save();renderTest()}
+function cross(i){const q=current(),k=q.id+'-'+i;state.crossed[k]=!state.crossed[k];if(state.crossed[k]&&state.answers[q.id]===i)delete state.answers[q.id];save();renderTest()}
+function toggleEliminate(){eliminate=!eliminate;renderTest()}
+function toggleFlag(){state.flags[current().id]=!state.flags[current().id];save();renderTest()}
+function toggleTimer(){hiddenTimer=!hiddenTimer;renderTest()}
+function move(d){chargeTime();state.qi=Math.max(0,Math.min(list(state.modules[state.mi]).length-1,state.qi+d));save();renderTest()}
+let returnFocus=null;
+function modal(title,body){returnFocus=document.activeElement;$('modal-root').innerHTML=`<div class="modal-overlay" onclick="if(event.target===this)closeModal()"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">${title}</h2><button class="quiet" onclick="closeModal()" aria-label="Close dialog">✕</button></div>${body}</section></div>`;$('modal-root').querySelector('button').focus()}
+function closeModal(){$('modal-root').innerHTML='';if(returnFocus&&returnFocus.isConnected)returnFocus.focus()}
+function navigatorDialog(){const qs=list(state.modules[state.mi]);modal('Questions in this module',`<p class="small">Blue = answered · ⚑ = marked for review · Outline = current question</p><div class="grid">${qs.map((q,i)=>`<button class="${answered(q)?'answered':''} ${state.flags[q.id]?'marked':''} ${i===state.qi?'current':''}" aria-label="Question ${i+1}, ${answered(q)?'answered':'unanswered'}${state.flags[q.id]?', flagged':''}" onclick="jump(${i})">${i+1}</button>`).join('')}</div><p>${qs.filter(answered).length} of ${qs.length} answered · ${qs.filter(q=>state.flags[q.id]).length} marked</p><div class="modal-actions"><button onclick="closeModal()">Return to test</button><button class="primary" onclick="submitDialog()">Finish module</button></div>`)}
+function jump(i){chargeTime();state.qi=i;save();closeModal();renderTest()}
+function submitDialog(){const qs=list(state.modules[state.mi]),missing=qs.filter(q=>!answered(q)).length,invalid=qs.filter(q=>!q.options&&answered(q)&&!Number.isFinite(numeric(state.answers[q.id]))).length;modal('Finish this module?',`<p>You have <b>${missing} unanswered</b> question${missing===1?'':'s'} and <b>${qs.filter(q=>state.flags[q.id]).length} marked for review</b>.${invalid?` <b>${invalid} numeric response(s) have an invalid format.</b>`:''}</p><p>You cannot return to this module during the test. Feedback will be available after your final module.</p><div class="modal-actions"><button onclick="navigatorDialog()">Review questions</button><button class="primary" onclick="finishModule()">Submit module</button></div>`)}
+function finishModule(){chargeTime();advance(Date.now())}
+function directions(){const math=state.modules[state.mi]>=2;modal('Directions',`<p>${math?'Solve each problem. Most questions offer four choices; some ask you to enter a numeric answer. Calculators and scratch paper may be used throughout Math. All numeric answers on this form are exact integers, though equivalent decimals or fractions are accepted.':'Each question follows a short passage or a pair of passages. Read the text and choose the best answer. There is exactly one best answer per question.'}</p><p>You may move freely within the current module. Mark questions to revisit and use answer elimination to cross out options. There is no penalty for an incorrect answer.</p><p>${state.mode==='timed'?'The timer keeps running while dialogs are open or this tab is closed. When time expires, the module locks and the test advances.':'This is untimed practice. Submit each module when you are ready.'} Completed modules stay locked until final review.</p><p class="small">Independent practice. This form is fixed, not adaptive. It is not affiliated with or endorsed by College Board.</p>`)}
+function moreMenu(){modal('Test options',`<p>Your answers are saved in this browser. ${state.mode==='timed'?'Leaving the test does not pause its timer.':''}</p><div class="modal-actions"><button onclick="closeModal();$('app').innerHTML=landing()">Go to start screen</button><button onclick="closeModal()" class="primary">Return to test</button></div>`)}
+function renderBreak(){$('app').innerHTML=`<div class="break-screen"><section class="card"><div class="eyebrow">Reading and Writing complete</div><h1>Take a break.</h1><p>Stand up, stretch, and rest your eyes.<br>Math begins when this 10-minute break ends.</p><div id="break-value" class="break-clock">${fmt((state.breakEnd-Date.now())/1000)}</div><button class="primary" onclick="startModule(Date.now());save();render()">End break and begin Math</button><p class="small">Your completed Reading and Writing modules are locked.</p></section></div>`}
+function reference(){modal('Math reference sheet',`<div class="ref-grid"><p><b>Circle</b><br>A = πr²<br>C = 2πr</p><p><b>Rectangle</b><br>A = ℓw</p><p><b>Triangle</b><br>A = ½bh<br>a² + b² = c² (right triangle)</p><p><b>Special right triangles</b><br>45°–45°–90°: x, x, x√2<br>30°–60°–90°: x, x√3, 2x</p><p><b>Rectangular prism</b><br>V = ℓwh</p><p><b>Cylinder</b><br>V = πr²h</p><p><b>Sphere</b><br>V = ⁴⁄₃πr³</p><p><b>Cone</b><br>V = ⅓πr²h</p><p><b>Rectangular pyramid</b><br>V = ⅓ℓwh</p><p><b>Angles</b><br>A circle has 360° or 2π radians.<br>A triangle’s angles sum to 180°.</p></div><p class="small">In right-triangle formulas, c is the hypotenuse. In the special triangles, the side lengths are listed opposite the angles in order.</p>`)}
+// Restricted recursive-descent calculator: no eval or arbitrary JavaScript.
+function calculate(s){const tokens=s.match(/\d*\.?\d+(?:e[+-]?\d+)?|[a-z]+|[()+*/^−-]/gi)||[];if(tokens.join('').toLowerCase()!==s.replace(/\s/g,'').toLowerCase())throw Error('Unsupported symbol');let pos=0;const take=()=>tokens[pos++],peek=()=>tokens[pos];function sum(){let a=product();while(peek()==='+'||peek()==='-'){const op=take(),b=product();a=op==='+'?a+b:a-b}return a}function product(){let a=unary();while(peek()==='*'||peek()==='/'){const op=take(),b=unary();a=op==='*'?a*b:a/b}return a}function unary(){if(peek()==='+'){take();return unary()}if(peek()==='-'||peek()==='−'){take();return -unary()}return power()}function power(){let a=atom();if(peek()==='^'){take();a=Math.pow(a,unary())}return a}function atom(){let t=take();if(t==='('){let a=sum();if(take()!==')')throw Error('Missing closing parenthesis');return a}if(t==='pi')return Math.PI;if(t==='e')return Math.E;if(['sqrt','sin','cos','tan','ln','log','abs'].includes(t)){if(take()!=='(')throw Error('Use parentheses after functions');const a=sum();if(take()!==')')throw Error('Missing closing parenthesis');const fn={sqrt:Math.sqrt,sin:x=>Math.sin(x*Math.PI/180),cos:x=>Math.cos(x*Math.PI/180),tan:x=>Math.tan(x*Math.PI/180),ln:Math.log,log:Math.log10,abs:Math.abs}[t];return fn(a)}if(t!==undefined&&/^\d*\.?\d+(?:e[+-]?\d+)?$/i.test(t))return Number(t);throw Error('Enter a valid expression')}const value=sum();if(pos!==tokens.length||!Number.isFinite(value))throw Error('Check expression or domain');return Number(value.toPrecision(12))}
+let calcText='';
+function calculator(){modal('Calculator',`<p class="small">Basic scientific calculator · Trigonometric functions use degrees.<br>For graphing, <a href="https://www.desmos.com/calculator" target="_blank" rel="noopener">open Desmos in a new tab</a> (internet required). The test timer continues.</p><input class="calc-input" id="calc" aria-label="Calculator expression" value="${esc(calcText)}" placeholder="Example: sqrt(49) + 2^3" oninput="calcText=this.value" onkeydown="if(event.key==='Enter')runCalc()"><div id="calc-result" class="calc-output" role="status"></div><div class="calc-keys">${['7','8','9','/','sqrt(','4','5','6','*','^','1','2','3','-','(','0','.','pi','+',')'].map(k=>`<button onclick="calcKey('${k}')">${k}</button>`).join('')}</div><div class="modal-actions"><button onclick="$('calc').value='';calcText='';$('calc-result').textContent=''">Clear</button><button class="primary" onclick="runCalc()">Calculate</button></div>`);$('calc').focus()}
+function calcKey(k){$('calc').value+=k;calcText=$('calc').value;$('calc').focus()}
+function runCalc(){try{$('calc-result').textContent='= '+calculate($('calc').value)}catch(e){$('calc-result').textContent=e.message}}
+const advice={
+'Craft and Structure':'Practice words in context by predicting a meaning before looking at choices. For paired texts, name precisely where the authors agree or qualify one another.',
+'Information and Ideas':'Separate what the passage states from what it merely suggests. For evidence questions, match the exact claim; for tables, compare the relevant rows and denominators.',
+'Standard English Conventions':'Identify the grammatical subject and each independent clause before choosing punctuation. Review agreement, modifiers, and essential versus nonessential information.',
+'Expression of Ideas':'State the relationship between sentences before selecting a transition. For notes questions, follow the stated writing goal rather than including every fact.',
+'Algebra':'Translate the situation into equations before solving. Review slopes, inequalities, and when a system has one, zero, or infinitely many solutions.',
+'Advanced Math':'Practice factoring, exponent rules, and vertex/discriminant reasoning. Substitute solutions into original rational or radical equations to catch invalid answers.',
+'Problem-Solving and Data Analysis':'Track the reference quantity in percentages and the restricted denominator in probability. Distinguish random sampling from random assignment.',
+'Geometry and Trigonometry':'Sketch and label the figure. Distinguish radius from diameter, apply squared scale factors to areas, and identify opposite, adjacent, and hypotenuse sides.'};
+function summary(){const qs=activeQuestions(),domains=[...new Set(qs.map(q=>q.domain))].map(name=>{const a=qs.filter(q=>q.domain===name);return{name,total:a.length,right:a.filter(correct).length}});return{qs,domains,total:qs.length,right:qs.filter(correct).length,unanswered:qs.filter(q=>!answered(q)).length}}
+function renderResults(){const s=summary(),weak=[...s.domains].sort((a,b)=>a.right/a.total-b.right/b.total).filter(d=>d.right<d.total).slice(0,3);$('app').innerHTML=`<div class="results"><div class="wrap"><div class="results-header"><div><div class="eyebrow">Your practice report · Form 01</div><h1>Test complete.</h1></div><div class="report-actions"><button onclick="downloadReport()">Download feedback</button><button onclick="window.print()">Print report</button><button onclick="$('app').innerHTML=landing()">New attempt</button></div></div><p class="intro">Use these results to decide what to practice next. Accuracy is based on every question in your selected test, including unanswered questions.</p><div class="stats"><div class="card stat"><span>Overall accuracy</span><strong>${Math.round(100*s.right/s.total)}%</strong><span>${s.right} of ${s.total} correct · ${s.unanswered} unanswered</span></div>${['Reading and Writing','Math'].map((name,i)=>{const qs=s.qs.filter(q=>i?q.m>=2:q.m<2);return `<div class="card stat"><span>${name}</span><strong>${qs.length?qs.filter(correct).length+' / '+qs.length:'—'}</strong><span>${qs.length?Math.round(100*qs.filter(correct).length/qs.length)+'% correct':'Not included in this attempt'}</span></div>`}).join('')}</div><div class="banner">${state.mode==='timed'?'Timed':'Untimed'} practice · Fixed form, not adaptive · No scaled SAT score. These original questions have not been statistically calibrated. Raw accuracy should not be converted into a 400–1600 score.</div><div class="setup"><section class="card"><h2>Skill breakdown</h2>${s.domains.map(d=>`<div class="domain"><span>${d.name}</span><b style="text-align:right">${d.right} / ${d.total}</b><div class="bar"><span style="width:${100*d.right/d.total}%"></span></div></div>`).join('')}</section><section class="card"><h2>What to work on next</h2>${weak.length?weak.map((d,i)=>`<p><b>${i+1}. ${d.name}</b><br>${advice[d.name]}</p>`).join(''):'<p>You answered every question correctly. Try an official adaptive Bluebook practice test next to assess performance on a new, calibrated form.</p>'}<p class="small">${s.unanswered?`${s.unanswered} question(s) were unanswered. Review pacing as well as content; an educated guess has no wrong-answer penalty.`:'You entered an answer for every question.'} Recommendations reflect this one attempt, not a diagnosis of your overall ability.</p></section></div><section class="card" style="margin-top:24px"><h2>Module results</h2><table><tr><th>Module</th><th>Correct</th><th>Unanswered</th><th>Recorded time</th></tr>${state.modules.map(m=>{const qs=list(m);return `<tr><td>${MODULES[m].name} ${MODULES[m].num}</td><td>${qs.filter(correct).length}/${qs.length}</td><td>${qs.filter(q=>!answered(q)).length}</td><td>${fmt(qs.reduce((v,q)=>v+(state.times[q.id]||0),0))}</td></tr>`}).join('')}</table><p class="small">Recorded time includes time with a question open, including time away while the page remains open. It is not a measure of active thinking; closing the browser can make these totals incomplete even though module deadlines continue.</p></section><div class="review-controls"><h2 style="margin:0 15px 0 0">Answer review</h2><label>Show <select id="review-filter" onchange="reviewFilter=this.value;renderReview()"><option value="missed">Missed & unanswered</option><option value="all">All questions</option><option value="flagged">Marked for review</option></select></label><label>Skill <select id="review-domain" onchange="reviewDomain=this.value;renderReview()"><option value="all">All skills</option>${s.domains.map(d=>`<option>${d.name}</option>`).join('')}</select></label></div><div id="review-list"></div><p class="small">Retaking the same questions can improve familiarity but does not independently measure progress. Use a new official form for a fresh score estimate.</p></div></div>`;$('review-filter').value=reviewFilter;$('review-domain').value=reviewDomain;renderReview()}
+function renderReview(){const qs=activeQuestions().filter(q=>(reviewFilter==='all'||reviewFilter==='missed'&&!correct(q)||reviewFilter==='flagged'&&state.flags[q.id])&&(reviewDomain==='all'||q.domain===reviewDomain));$('review-list').innerHTML=qs.length?qs.map(q=>{const n=list(q.m).indexOf(q)+1,a=state.answers[q.id];return `<article class="card review-card"><span class="badge">${MODULES[q.m].name} · Module ${MODULES[q.m].num} · Question ${n}</span><h3>${correct(q)?'✓ Correct':answered(q)?'Incorrect':'Unanswered'} <span class="small">· ${q.skill} · ${q.level} (estimated)</span></h3>${q.passage?`<div class="text">${q.passage}</div>`:''}<p><b>${q.prompt}</b></p>${q.options?q.options.map((o,i)=>`<div class="option-review ${i===q.answer?'correct':a===i?'incorrect':''}"><b>${'ABCD'[i]}.</b> ${o}${i===q.answer?' <b>— Correct answer</b>':''}${a===i?' <b>— Your answer</b>':''}</div>`).join(''):`<p>Your answer: <b>${answered(q)?esc(a):'No response'}</b> · Correct answer: <b>${q.answer}</b></p>`}<div class="explanation"><b>Explanation</b><br>${q.explanation}</div></article>`}).join(''):'<div class="card"><p>No questions match this filter.</p></div>'}
+function downloadReport(){const s=summary();let t=`SAT PRACTICE STUDIO — FORM 01\n${state.mode.toUpperCase()} / FIXED, NONADAPTIVE PRACTICE\n\nCorrect: ${s.right}/${s.total} (${Math.round(s.right/s.total*100)}%)\nUnanswered: ${s.unanswered}\nNo scaled SAT score: original, uncalibrated questions.\n\nSKILL BREAKDOWN\n`;s.domains.forEach(d=>t+=`${d.name}: ${d.right}/${d.total}\n`);t+='\nRECOMMENDED PRACTICE\n';[...s.domains].sort((a,b)=>a.right/a.total-b.right/b.total).filter(d=>d.right<d.total).slice(0,3).forEach(d=>t+=`${d.name}: ${advice[d.name]}\n\n`);t+='\nQUESTION REVIEW\n';s.qs.forEach(q=>{const a=state.answers[q.id];t+=`\n${MODULES[q.m].name} ${MODULES[q.m].num}, Q${list(q.m).indexOf(q)+1}: ${correct(q)?'Correct':answered(q)?'Incorrect':'Unanswered'}\n${q.skill}\nYour answer: ${answered(q)?q.options?'ABCD'[a]+'. '+q.options[a]:a:'No response'}\nCorrect answer: ${q.options?'ABCD'[q.answer]+'. '+q.options[q.answer]:q.answer}\n${q.explanation}\n`});const blob=new Blob([t],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='SAT_Practice_Feedback.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();if(e.key==='Tab'&&$('modal-root').firstChild){const nodes=[...$('modal-root').querySelectorAll('button,input,a,select')].filter(x=>!x.disabled);const first=nodes[0],last=nodes[nodes.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
+window.addEventListener('beforeunload',()=>{chargeTime();save()});
+$('app').innerHTML=landing();setInterval(tick,1000);
+</script></body></html>
